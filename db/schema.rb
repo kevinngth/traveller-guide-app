@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_12_020229) do
+ActiveRecord::Schema.define(version: 2019_11_12_041111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,18 +24,22 @@ ActiveRecord::Schema.define(version: 2019_11_12_020229) do
   create_table "experiences", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id", null: false
     t.bigint "category_id", null: false
     t.string "title"
     t.text "description"
     t.text "img"
+    t.bigint "guide_id"
     t.index ["category_id"], name: "index_experiences_on_category_id"
-    t.index ["user_id"], name: "index_experiences_on_user_id"
+    t.index ["guide_id"], name: "index_experiences_on_guide_id"
   end
 
   create_table "guides", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.boolean "active"
+    t.text "bio"
+    t.index ["user_id"], name: "index_guides_on_user_id"
   end
 
   create_table "travellers", force: :cascade do |t|
@@ -54,10 +58,10 @@ ActiveRecord::Schema.define(version: 2019_11_12_020229) do
     t.string "name"
     t.string "location"
     t.boolean "guide", default: false
+    t.text "dp"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "experiences", "categories"
-  add_foreign_key "experiences", "users"
 end
