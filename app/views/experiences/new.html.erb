@@ -1,0 +1,25 @@
+<h1>New experience form</h1>
+<%= form_with scope: :experience, url: guide_experiences_path, local: true do |form| %>
+	<div class="form-group">
+  	<%= form.collection_select(:category_id, @categories, :id, :name, {:include_blank => 'Select category...'}, {:class => "custom-select"}) %>
+  </div>
+
+	<div class="form-group">
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :img %><br>
+    <%= form.text_field :img %>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit({:class => "btn btn-primary"}) %>
+  </div>
+<% end %>

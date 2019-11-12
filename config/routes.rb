@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/travellers/becomeaguide' =>  'travellers#becomeaguide', as: 'user'
   patch '/travellers/:id' => 'travellers#makeguide'
   resources :travellers
-  resources :guides
-  
+  resources :guides do
+    resources :experiences
+  end
+
 end
