@@ -1,0 +1,12 @@
+<h1>Join as a guide </h1>
+
+<%= form_with scope: :user, model: @user, local: true do |f| %>
+
+  <div><%= f.hidden_field :guide %></div>
+ <div><%= f.hidden_field :guide, :value => true %></div>
+
+  <p>
+    <%= f.submit 'Become a Guide Now' %>
+  </p>
+
+<% end %>
