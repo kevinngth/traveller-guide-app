@@ -10,7 +10,7 @@ class TravellersController < ApplicationController
   def makeguide
   @user = current_user
   @user.update(user_params)
-  redirect_to 
+  redirect_to '/guides'
   end
 
   private
