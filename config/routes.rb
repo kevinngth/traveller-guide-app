@@ -8,8 +8,24 @@ Rails.application.routes.draw do
   get 'travellers/findguide' => 'travellers#findguide'
   root 'travellers#index'
   get '/travellers/becomeaguide' =>  'travellers#becomeaguide', as: 'user'
-  patch '/travellers/:id' => 'travellers#makeguide'
+  post '/travellers/becomeaguide' => 'travellers#makeguide'
   resources :travellers
-  resources :guides
+  resources :guides do
+    resources :experiences
+  end
+  resources :reviews
+
+
+
+
+  resources :conversations do
+
+    resources :messages
+
+  end
+  
+
+
+
 
 end

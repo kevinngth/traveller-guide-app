@@ -10,13 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_12_041111) do
+ActiveRecord::Schema.define(version: 2019_11_13_060326) do
+
+ActiveRecord::Schema.define(version: 2019_11_13_034529) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "recipient_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -34,12 +44,32 @@ ActiveRecord::Schema.define(version: 2019_11_12_041111) do
   end
 
   create_table "guides", force: :cascade do |t|
+    t.bigint "user_id"
+    t.boolean "active", default: true
+    t.text "bio"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id"
-    t.boolean "active"
-    t.text "bio"
     t.index ["user_id"], name: "index_guides_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.bigint "conversation_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "guide_id"
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["guide_id"], name: "index_reviews_on_guide_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "travellers", force: :cascade do |t|
@@ -57,7 +87,7 @@ ActiveRecord::Schema.define(version: 2019_11_12_041111) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "location"
-    t.boolean "guide", default: false
+    t.boolean "is_guide", default: false
     t.text "dp"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

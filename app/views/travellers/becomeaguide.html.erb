@@ -1,12 +1,13 @@
-<h1>Join as a guide </h1>
+<h1>Join as a guide</h1>
 
-<%= form_with scope: :user, model: @user, local: true do |f| %>
-
-  <div><%= f.hidden_field :guide %></div>
- <div><%= f.hidden_field :guide, :value => true %></div>
-
-  <p>
-    <%= f.submit 'Become a Guide Now' %>
+<%= form_with scope: :guide, url: '/travellers/becomeaguide', local: true do |form| %>
+	<p>
+    <%= form.label :bio, 'Describe yourself as a guide' %><br>
+    <%= form.text_area :bio %>
   </p>
+
+	<div class="form-group">
+    <%= form.submit('Become a guide now',{:class => "btn btn-primary"}) %>
+  </div>
 
 <% end %>
