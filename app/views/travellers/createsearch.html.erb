@@ -1,14 +1,16 @@
 <h1>found stuff!</h1>
 
-<% @guides.each do |g|%>
-<ul>
-	<li>Guide name: <%=g.user.name%></li>
-	<li>Guide location: <%=g.user.location%></li>
-	<li>	<ul>Guide experiences:
-		<%g.experiences.each do |e|%>
-		<li><%=e.title%></li>
-		</ul></li>
-		<%end%>
+<%if @experiences.length != 0%>
+	<%@experiences.each do |x|%>
+		<div>
+		<p>Guide name: <%=x.guide.user.name%></p>
+		<ul>
+		<li>Guide location: <%=x.guide.user.location%></li>
+		<li>Experience: <%=x.title%></li>
+	</ul>
+	</div>
+	<%end%>
+<%else%>
+	<p> Sorry, no match!</p>
 
-</ul>
 <%end%>

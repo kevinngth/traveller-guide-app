@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-   post 'travellers/' => 'travellers#createsearch'
+   post '/guides' => 'travellers#createsearch'
 
   get 'travellers/dashboard' => 'travellers#index'
   get 'travellers/findguide' => 'travellers#findguide'
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     resources :messages
 
   end
-  
+
 
 
 

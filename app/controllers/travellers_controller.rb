@@ -11,29 +11,37 @@ class TravellersController < ApplicationController
 
   def findguide
     @name = current_user.name
- 
+
     @categories = Category.all
 
- 
   end
 
   def createsearch
-    p '@@@@@@@@@@@@@@@@@@@'
-    x = params[:experience][:category_ids]
-    p '@@@@@@@@@@@@@@@@@@@@@'
-    x = x.map{|y| y.to_i}
     @parameter = params[:search]
     @guides = Guide.joins(:user).where('location LIKE :search', search: @parameter)
- 
-    @experiences = Experience.where('category_id IN (?) ', x)
 
-   @found_guides =
-    p '####################'
-    p @experiences
-    p '####################'
+    p '//////////!!!!!!!!!'
+    p @guides
+    @guides_ids = @guides.map{|x|x.id}
+    p '//////?!!!!!!!!'
 
-# joins(:category).where('id ')
- 
+    x = params[:experience][:category_ids]
+    x = x.map{|y| y.to_i}
+    @experiences = Experience.where('category_id IN (?) AND guide_id IN (?)', x,@guides_ids)
+
+    # @guides.each do |x|
+    #   x.experiences.each do |y|
+    #     if y.guide_id === x.id
+    #       p "AAAAAAAA????????????????????"
+    #       p x
+    #       p y
+    #     else
+    #       puts "sorry no match"
+    #     end
+    #   end
+    # end
+
+
   end
 
   def becomeaguide
