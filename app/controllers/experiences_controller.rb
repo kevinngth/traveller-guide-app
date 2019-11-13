@@ -22,10 +22,9 @@ class ExperiencesController < ApplicationController
 
   def create
     @experience = Experience.new(experience_params)
-
     @categories = Category.all
-    @guide.user_id = current_user.id
-
+    @guide = current_user.guide
+    @experience.guide = @guide
     if @experience.save
       redirect_to '/guides'
     else
