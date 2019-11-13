@@ -1,0 +1,17 @@
+
+<div class = "d-flex justify-content-center">
+	<img src="https://picsum.photos/id/1002/431/286"/>
+</div>
+<br/>
+
+<h3>Where are you going, <%=@name%>?</h3>
+
+<%= form_with scope: :travellers, url: '/travellers', local:true do %>
+  <p>
+   <%= text_field_tag :search, params[:search]%>
+  </p>
+
+  <p><%= submit_tag "Find Guide", :name=>nil %>
+
+  </p>
+<% end %>
