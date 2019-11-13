@@ -1,0 +1,8 @@
+<h1>found stuff!</h1>
+
+<% @guides.each do |g|%>
+<ul>
+	<li><%=g.user.name%></li>
+	<li><%=g.user.location%></li>
+</ul>
+<%end%>

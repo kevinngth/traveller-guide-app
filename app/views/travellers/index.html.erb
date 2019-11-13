@@ -1,1 +1,58 @@
-<h1>HELLO BANANA</h1>
+<h1>Hello, <%=@user.name%></h1>
+
+<div class = "container">
+	<div class="row">
+	<div class="col-8 border">
+
+
+		<div class = "card-header">
+		<h2>Your profile!</h2> </div>
+			<h5>Name: <%=@user.name%></h5>
+		 	<h5>Location: <%=@user.location%></h5>
+		 	<a class = "btn btn-primary" href = "/travellers/editprofile">Update profile </a>
+
+
+	</div>
+	<div class="col-4 ">
+<div class="row">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSgz00XOgwqfQTlyHBYKegoGrV3kFsuEAHY96ZVVDzSJkD3-z2q" alt="" style="border-radius:50%; width:250px; height:250px;" class="m-auto">
+</div>
+
+
+</div>
+
+</div>
+	<br/>
+	<a class = "btn btn-block btn-success" href="/travellers/findguide">Going on an adventure!</a>
+
+<div class="container mt-3">
+<ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="experiences" aria-selected="true">Conversations</a>
+  </li>
+
+</ul>
+<div class="tab-content" id="myTabContent">
+
+<%# CONVERSATIONS %>
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+<div class="accordion mt-3" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Conversation with @kevin
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+
+
+</div>
