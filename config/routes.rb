@@ -13,6 +13,14 @@ Rails.application.routes.draw do
   resources :guides
 
   resources :reviews
+
+
+
+  resources :conversations do
+
+    resources :messages
+
+  end
   
 
 
