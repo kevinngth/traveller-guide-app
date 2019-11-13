@@ -18,9 +18,15 @@
 		  <div class="collapse navbar-collapse" id="navbarNav">
 		    <ul class="navbar-nav">
 <% if user_signed_in? %>
+	<% if current_user.guide %>
+					<li>
+						<%= link_to("guide dashboard", '/guides', {:class => "nav-link"})%>
+					</li>
+	<% else %>
 		      <li class="nav-item">
-		        <%= link_to("fakelink", '#', {:class => "nav-link"})%>
+		        <%= link_to("become a guide", '/travellers/becomeaguide', {:class => "nav-link"})%>
 		      </li>
+	<% end %>
 		    </ul>
 		  </div>
 		  <div class="navbar-right mr-2">

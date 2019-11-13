@@ -1,9 +1,8 @@
 class GuidesController < ApplicationController
 
-  before_action  :authenticate_user!
-
   def index
     @user = current_user
+    @guide = @user.guide
   end
 
 end
