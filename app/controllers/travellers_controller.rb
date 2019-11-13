@@ -20,9 +20,6 @@ class TravellersController < ApplicationController
   def createsearch
     @parameter = params[:search]
     @guides = Guide.joins(:user).where('location LIKE :search', search: @parameter)
- 
-    @experiences = Experience.where('category_id IN (?) ', x)
- 
 
     p '//////////!!!!!!!!!'
     p @guides
@@ -32,6 +29,13 @@ class TravellersController < ApplicationController
     x = params[:experience][:category_ids]
     x = x.map{|y| y.to_i}
     @experiences = Experience.where('category_id IN (?) AND guide_id IN (?)', x,@guides_ids)
+
+    ids = @experiences.distinct(:guide_id).pluck(:guide_id).map{|y| y}
+
+    @unique = Guide.where('id IN (?)',ids)
+
+    p 'BANANANANAANANNANA'
+    p @unique
 
     # @guides.each do |x|
     #   x.experiences.each do |y|
@@ -46,10 +50,10 @@ class TravellersController < ApplicationController
     # end
 
 
- 
+
 # joins(:category).where('id ')
 
- 
+
   end
 
   def becomeaguide

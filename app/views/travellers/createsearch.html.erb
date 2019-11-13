@@ -1,15 +1,30 @@
 <h1>found stuff!</h1>
 
+
+
 <%if @experiences.length != 0%>
-	<%@experiences.each do |x|%>
-		<div>
-		<p>Guide name: <%=x.guide.user.name%></p>
-		<ul>
-		<li>Guide location: <%=x.guide.user.location%></li>
-		<li>Experience: <%=x.title%></li>
-	</ul>
-	</div>
-	<%end%>
+
+	<div class = "container">
+		<%@unique.each do |x|%>
+		<div class="row">
+	    <div class="col-9">
+						<li class="list-group-item">
+							Guide name: <p><%=x.user.name%></p>
+							Guide location: <p><%=x.user.location%></p>
+							Experiences:
+									<%x.experiences.each do |y|%>
+									<p><%=y.title%></p>
+									<%end%>
+						</li>
+				</div>
+				<div class="col-3 border">
+				    <img src = "https://dcist.com/wp-content/uploads/sites/3/2019/04/Gem2-768x689.jpg" class = "img-fluid"/>
+				</div>
+		</div>
+			<% end %>
+</div>
+
+
 <%else%>
 	<p> Sorry, no match!</p>
 
