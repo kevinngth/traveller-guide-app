@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   patch '/travellers/:id' => 'travellers#makeguide'
   resources :travellers
   resources :guides
+  resources :reviews
   
 end
