@@ -11,6 +11,19 @@
    <%= text_field_tag :search, params[:search]%>
   </p>
 
+     <p>
+   <table>
+	    <%@categories.each do |category|%>
+	 <tr>
+	    <td>
+	  <input type="checkbox" value = "<%=category.id%>" name = "experience[category_ids][]"><%=category.name%>
+	    </td>
+	</tr>
+
+	<%end%>
+	</table>
+	  </p>
+
   <p><%= submit_tag "Find Guide", :name=>nil %>
 
   </p>
