@@ -1,26 +1,40 @@
-<h2 style="font-family: 'Brush Script MT';">Log in</h2>
+<div class="row d-flex justify-content-around">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+	<div class="col-sm-6">
+		<img class="img-fluid" src="https://raw.githubusercontent.com/kevinngth/traveller-guide-app/master/public/login-banner.jpg"/>
+	</div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+	<div class="col-sm-6 text-center">
+		<h1 class="display-4">Log in</h1>
+			<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
+			  <div class="form-group row">
+			    <%= f.label :email, :class => 'col-2 col-form-label' %><br />
+			    <div class="col-10">
+			    	<%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control-plaintext bg-light" %>
+			  	</div>
+			  </div>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
 
-<%= render "users/shared/links" %>
+			  <div class="form-group row">
+			    <%= f.label :password, :class => 'col-2 col-form-label' %><br />
+			    <div class="col-10">
+			    	<%= f.password_field :password, autocomplete: "current-password", :class => "form-control-plaintext bg-light" %>
+			  	</div>
+			  </div>
+
+			  <% if devise_mapping.rememberable? %>
+			    <div class="form-group">
+			      <%= f.check_box :remember_me %>
+			      <%= f.label :remember_me %>
+			    </div>
+			  <% end %>
+
+			  <div class="actions">
+			    <%= f.submit "Log in", {:class => "btn btn-success btn-block mb-4"} %>
+			  </div>
+			<% end %>
+
+			<%= render "users/shared/links" %>
+	</div>
+</div>
