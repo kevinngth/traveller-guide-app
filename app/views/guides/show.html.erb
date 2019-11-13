@@ -1,0 +1,27 @@
+<h1 class="text-center mt-3">Name:  <%= @guide.user.name %></h1>
+
+Location: <%= @guide.user.location %>
+
+<div class="row">
+    <div class="col-9">
+        <% @guide.experiences.each do |experience|%>
+<li class="list-group-item">  Experience: <p><%= experience.title %></p> 
+Description: <p> <%= experience.description %> </p>
+</li>
+<% end %>
+    </div>
+
+
+<div class="col-3 border">
+    <h3>Bio</h3>
+    <p>
+    <%= @guide.bio %>
+    </p>
+
+</div>
+</div>
+
+<%= link_to 'Chat',
+       conversations_path(sender_id: current_user.id, recipient_id: @guide.user.id), method: "post", class:"text-white btn btn-success btn-block mt-3"%>
+
+
