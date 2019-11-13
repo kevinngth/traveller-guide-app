@@ -23,8 +23,7 @@ class TravellersController < ApplicationController
 
     @guides_ids = @guides.map{|x|x.id}
 
-    p'@@@@@@@@'
-    p params
+    @rating = rand(5).floor
 
     if params.has_key?(:experience)
       x = params[:experience][:category_ids]
