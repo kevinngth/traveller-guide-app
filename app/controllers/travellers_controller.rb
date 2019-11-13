@@ -1,8 +1,6 @@
 class TravellersController < ApplicationController
 
-
   before_action :authenticate_user!
-
 
   def index
     @user = current_user
@@ -12,13 +10,18 @@ class TravellersController < ApplicationController
   def findguide
     @name = current_user.name
 
+
     @categories = Category.all
+
 
   end
 
   def createsearch
     @parameter = params[:search]
     @guides = Guide.joins(:user).where('location LIKE :search', search: @parameter)
+ 
+    @experiences = Experience.where('category_id IN (?) ', x)
+ 
 
     p '//////////!!!!!!!!!'
     p @guides
@@ -42,6 +45,10 @@ class TravellersController < ApplicationController
     # end
 
 
+ 
+# joins(:category).where('id ')
+
+ 
   end
 
   def becomeaguide
@@ -64,7 +71,5 @@ class TravellersController < ApplicationController
   private def guide_params
     params.require(:guide).permit(:bio)
   end
-
-
 
 end
