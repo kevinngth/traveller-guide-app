@@ -11,7 +11,7 @@
 			  <div class="form-group row">
 			    <%= f.label :email, :class => 'col-2 col-form-label' %><br />
 			    <div class="col-10">
-			    	<%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control-plaintext bg-light" %>
+			    	<%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control-plaintext bg-light border rounded-pill" %>
 			  	</div>
 			  </div>
 
@@ -19,7 +19,7 @@
 			  <div class="form-group row">
 			    <%= f.label :password, :class => 'col-2 col-form-label' %><br />
 			    <div class="col-10">
-			    	<%= f.password_field :password, autocomplete: "current-password", :class => "form-control-plaintext bg-light" %>
+			    	<%= f.password_field :password, autocomplete: "current-password", :class => "form-control-plaintext bg-light border rounded-pill" %>
 			  	</div>
 			  </div>
 
@@ -31,7 +31,7 @@
 			  <% end %>
 
 			  <div class="actions">
-			    <%= f.submit "Log in", {:class => "btn btn-success btn-block mb-4"} %>
+			    <%= f.submit "Log in", {:class => "btn btn-success btn-block mb-4 rounded-pill"} %>
 			  </div>
 			<% end %>
 
