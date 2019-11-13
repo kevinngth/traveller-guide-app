@@ -1,21 +1,21 @@
+<div class = "container">
+	<div class = "jumbotron" style = "background-image: url(https://picsum.photos/id/1002/431/286); background-size: cover; background-repeat: no-repeat; height:100%">
+	</div>
 
-<div class = "jumbotron d-flex justify-content-space-between" style = "background-image: url(https://picsum.photos/id/1002/431/286); background-size: cover; background-repeat: no-repeat; height:100%">
-
-
-<div>
-	<h3 style = "color:white">Where are you going, <%=@name%>?</h3>
-</div>
 	<div>
-	<%= form_with scope: :travellers, url: '/travellers/createsearch', local:true do %>
+	<h3>Where are you going, <%=@name%>?</h3>
+
+
+	<%= form_with scope: :travellers, url: '/travellers/findguide', local:true do %>
 	  <p>
-	   <%= text_field_tag :search, params[:search]%>
+	   <%= text_field_tag :search, params[:search], placeholder: 'location', :required=> true%>
 	  </p>
 
 	     <p>
 	   <table>
 		    <%@categories.each do |category|%>
 		 <tr>
-		    <td style = "color:white">
+		    <td>
 		  <input type="checkbox" value = "<%=category.id%>" name = "experience[category_ids][]"><%=category.name%>
 		    </td>
 		</tr>
@@ -24,9 +24,9 @@
 		</table>
 		  </p>
 
-	  <p><%= submit_tag "Find Guide", :name=>nil %>
+	 <%= submit_tag "Find Guide", :name=>nil, class: 'btn btn-success' %>
 
-	  </p>
+
 	<% end %>
 	</div>
 </div>
