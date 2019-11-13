@@ -13,14 +13,11 @@
   	<nav class="navbar navbar-expand-lg navbar-light bg-none">
 <%# if the user is not logged in, navbar will only have brand%>
 		  <% if user_signed_in? %>
-<%# hamburger %>
-				  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-				    <span class="navbar-toggler-icon"></span>
-				  </button>
 <%# brand %>
-				<div>
-					<a class="ml-2 navbar-brand text-success" href="/" style="font-family: 'Monaco';">Nat Jio</a>
-				</div>
+				  <a class="navbar-brand m-0 p-0 nav-link dropdown-toggle text-secondary" data-toggle="collapse" data-target="#navbarNav">
+				    <img src="http://logok.org/wp-content/uploads/2014/06/National-Geographic-logo-yellow-frame-880x660.png" width="40" height="40" class="d-inline-block align-top">
+    				<span style="font-family: Copperplate; color: grey; font-size: 1.8rem;">Nat Jio</span>
+				  </a>
 <%# user controls %>
 			  <div class="navbar ml-auto">
 			  	<%= current_user.name %>
