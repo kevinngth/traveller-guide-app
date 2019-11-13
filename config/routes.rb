@@ -14,4 +14,18 @@ Rails.application.routes.draw do
     resources :experiences
   end
   resources :reviews
+
+
+
+
+  resources :conversations do
+
+    resources :messages
+
+  end
+  
+
+
+
+
 end
