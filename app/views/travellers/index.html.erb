@@ -41,15 +41,24 @@
   <div class="card">
     <div class="card-header" id="headingOne">
       <h2 class="mb-0">
-        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Conversation with @kevin
-        </button>
+
+      <% @conversations.each do |conversation| %>
+      <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+       <% if conversation.sender_id == current_user.id %>
+         <% recipient = User.find(conversation.recipient_id) %>
+       <% else %>
+         <% recipient = User.find(conversation.sender_id) %>
+       <% end %>
+       <h3><%= link_to recipient.name, conversation_messages_path(conversation)%></h3>
+      <% end %>
+     <% end %>
+
+          
       </h2>
     </div>
 
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
       </div>
     </div>
   </div>
@@ -57,15 +66,4 @@
 
 </div>
 <hr>
-<div class="container text-center ">
-  <h1 class="border-bottom">Inbox</h1>
-       <% @users.each do |user| %>
-        <% if user.id != current_user.id %>
-         <div class="item"><h3>
-      @<%= link_to user.name,
-       conversations_path(sender_id: current_user.id, recipient_id: user.id), method: "post"%>
-     </h3></div>
-      <% end %>
-     <% end %>
-    </div>
-</div>
+

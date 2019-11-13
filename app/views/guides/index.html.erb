@@ -41,7 +41,7 @@
     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="experiences" aria-selected="true">Experiences</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="requests" aria-selected="false">Requests</a>
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="messages" aria-selected="false">Messages</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
@@ -75,8 +75,18 @@
 
 
 
-  <%# REQUESTS %>
-  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Requests</div>
+  <%# Messages %>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+ <% @conversations.each do |conversation| %>
+      <% if conversation.recipient_id == current_user.id %>
+
+         <% sender = User.find(conversation.sender_id) %>
+    
+       <h3><%= link_to sender.name, conversation_messages_path(conversation)%></h3>
+      <% end %>
+     <% end %>
+  
+  </div>
 
 
 
@@ -86,3 +96,7 @@
 </div>
 
 <a href="/guides/<%= @user.id %>/experiences/new" class="btn btn-block btn-success mt-5">Add Experiences</a>
+
+
+
+
