@@ -1,0 +1,17 @@
+<h1>Make A Review</h1>
+
+
+<%= form_with scope: :review, model: @review, local: true do |f| %>
+
+  <p>
+    <%= f.label :Review %><br>
+    <%= f.text_area :body %>
+  </p>
+
+  <%= f.hidden_field :user_id, :value => @user.id %>
+
+
+<p>
+    <%= f.submit 'Submit Review' %>
+  </p>
+<% end %>

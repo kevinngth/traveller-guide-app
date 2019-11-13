@@ -42,6 +42,16 @@ ActiveRecord::Schema.define(version: 2019_11_13_034529) do
     t.index ["user_id"], name: "index_guides_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "guide_id"
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["guide_id"], name: "index_reviews_on_guide_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "travellers", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

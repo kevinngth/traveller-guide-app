@@ -1,6 +1,16 @@
 class TravellersController < ApplicationController
 
   def index
+    @user = current_user
+  end
+
+  def findguide
+    @name = current_user.name
+  end
+
+  def createsearch
+    @parameter = params[:search]
+    @guides = Guide.joins(:user).where('location LIKE :search', search: @parameter)
   end
 
   def becomeaguide
