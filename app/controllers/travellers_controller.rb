@@ -21,7 +21,6 @@ class TravellersController < ApplicationController
     @parameter = params[:search]
     @guides = Guide.joins(:user).where('location LIKE :search', search: @parameter)
  
-    @experiences = Experience.where('category_id IN (?) ', x)
  
 
     p '//////////!!!!!!!!!'
