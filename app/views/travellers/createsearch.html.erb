@@ -4,5 +4,11 @@
 <ul>
 	<li>Guide name: <%=g.user.name%></li>
 	<li>Guide location: <%=g.user.location%></li>
+	<li>	<ul>Guide experiences:
+		<%g.experiences.each do |e|%>
+		<li><%=e.title%></li>
+		</ul></li>
+		<%end%>
+
 </ul>
 <%end%>
