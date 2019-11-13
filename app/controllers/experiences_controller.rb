@@ -22,7 +22,9 @@ class ExperiencesController < ApplicationController
 
   def create
     @experience = Experience.new(experience_params)
-    @experience.guide = current_user.guide
+    @categories = Category.all
+    @guide = Guide.find(params[:guide_id])
+    byebug
     if @experience.save
       redirect_to '/guides'
     else
@@ -37,7 +39,6 @@ class ExperiencesController < ApplicationController
 
   def update
     @experience = experience.find(params[:id])
-    @experience.user = current_user
     @experience.update(experience_params)
     redirect_to @experience
   end
@@ -53,6 +54,6 @@ class ExperiencesController < ApplicationController
   end
 
   private def experience_params
-    params.require(:experience).permit(:title, :description, :img, :category_ids => [], :guide_ids => [])
+    params.require(:experience).permit(:title, :description, :img, :category_id, :guide_id)
   end
 end
