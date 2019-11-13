@@ -56,3 +56,16 @@
 
 
 </div>
+<hr>
+<div class="container text-center ">
+  <h1 class="border-bottom">Inbox</h1>
+       <% @users.each do |user| %>
+        <% if user.id != current_user.id %>
+         <div class="item"><h3>
+      @<%= link_to user.name,
+       conversations_path(sender_id: current_user.id, recipient_id: user.id), method: "post"%>
+     </h3></div>
+      <% end %>
+     <% end %>
+    </div>
+</div>
