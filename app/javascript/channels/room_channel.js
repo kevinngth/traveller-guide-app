@@ -22,6 +22,7 @@ consumer.subscriptions.create("RoomChannel", {
 let submit_messages;
 
 $(document).on('turbolinks:load', function () {
+  $('#message_content').focus()
   submit_messages()
 })
 
