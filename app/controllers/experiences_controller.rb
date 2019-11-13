@@ -22,9 +22,10 @@ class ExperiencesController < ApplicationController
 
   def create
     @experience = Experience.new(experience_params)
+
     @categories = Category.all
-    @guide = Guide.find(params[:guide_id])
-    byebug
+    @guide.user_id = current_user.id
+
     if @experience.save
       redirect_to '/guides'
     else
@@ -54,6 +55,6 @@ class ExperiencesController < ApplicationController
   end
 
   private def experience_params
-    params.require(:experience).permit(:title, :description, :img, :category_id, :guide_id)
+    params.require(:experience).permit(:title, :description, :img, :category_id)
   end
 end

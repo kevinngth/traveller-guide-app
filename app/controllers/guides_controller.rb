@@ -13,6 +13,8 @@ class GuidesController < ApplicationController
 
   def create
     @guide = Guide.new(guide_params)
+    byebug
+    @guide.user = current_user
     if @guide.save
       redirect_to '/guides'
     else
@@ -21,7 +23,7 @@ class GuidesController < ApplicationController
   end
 
   private def guide_params
-    params.require(:guide).permit(:bio, :user_id)
+    params.require(:guide).permit(:bio)
   end
 
 end
