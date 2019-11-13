@@ -12,4 +12,8 @@ Rails.application.routes.draw do
   resources :travellers
   resources :guides
 
+  resources :reviews
+  
+
+
 end
