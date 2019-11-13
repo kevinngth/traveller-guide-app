@@ -4,44 +4,50 @@
     <title>Nat Jio</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-	<%= action_cable_meta_tag %> 
-
+		<%= action_cable_meta_tag %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 		<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-
   </head>
 
   <body>
-  	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		  <a class="navbar-brand" href="/">Nat Jio</a>
-		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-		    <span class="navbar-toggler-icon"></span>
-		  </button>
-		  <div class="collapse navbar-collapse" id="navbarNav">
-		    <ul class="navbar-nav">
-<% if user_signed_in? %>
-	<% if current_user.guide %>
-					<li>
-						<%= link_to("guide dashboard", '/guides', {:class => "nav-link"})%>
-					</li>
-	<% else %>
-		      <li class="nav-item">
-		        <%= link_to("become a guide", '/travellers/becomeaguide', {:class => "nav-link"})%>
-		      </li>
-	<% end %>
-		    </ul>
-		  </div>
-		  <div class="navbar-right mr-2">
-		  	<%= current_user.name %>
-		  </div><br/>
-		  	<%= link_to 'log out', destroy_user_session_url, method: :delete, class: "btn btn-primary navbar-right" %>
-<% else %>
-		  	<%= link_to 'log in', new_user_session_url, {:class => "btn btn-primary navbar-right mr-2"} %>
-		  	<%= link_to 'sign up', new_user_registration_url, {:class => "btn btn-primary navbar-right"} %>
-<% end %>
+  	<nav class="navbar navbar-expand-lg navbar-light bg-none">
+<%# if the user is not logged in, navbar will only have brand%>
+		  <% if user_signed_in? %>
+<%# hamburger %>
+				  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+				    <span class="navbar-toggler-icon"></span>
+				  </button>
+<%# brand %>
+				<div>
+					<a class="ml-2 navbar-brand" href="/">Nat Jio</a>
+				</div>
+<%# user controls %>
+			  <div class="navbar ml-auto">
+			  	<%= current_user.name %>
+			  	<%= link_to 'log out', destroy_user_session_url, method: :delete, class: "btn btn-light ml-2" %>
+			  </div><br/>
+<%# dropdown nav list%>
+			  <div class="collapse navbar-collapse" id="navbarNav">
+			    <ul class="navbar-nav">
+<%# if user is a guide, user will be able to see link to dashboard %>
+						<% if current_user.guide %>
+							<li>
+								<%= link_to("guide dashboard", '/guides', {:class => "nav-link"})%>
+							</li>
+<%# if user is not a guide, there's a link to click in to become a guide %>
+						<% else %>
+				      <li class="nav-item">
+				        <%= link_to("become a guide", '/travellers/becomeaguide', {:class => "nav-link"})%>
+				      </li>
+						<% end %>
+			    </ul>
+			  </div>
+			<% end %>
 		</nav>
+
 		<div class="container">
 			<%= yield %>
 		</div>
+
   </body>
 </html>
