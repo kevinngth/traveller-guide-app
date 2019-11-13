@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2019_11_13_060326) do
 
+ActiveRecord::Schema.define(version: 2019_11_13_034529) do
+
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,11 +44,11 @@ ActiveRecord::Schema.define(version: 2019_11_13_060326) do
   end
 
   create_table "guides", force: :cascade do |t|
+    t.bigint "user_id"
+    t.boolean "active", default: true
+    t.text "bio"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id"
-    t.boolean "active"
-    t.text "bio"
     t.index ["user_id"], name: "index_guides_on_user_id"
   end
 
@@ -84,7 +87,7 @@ ActiveRecord::Schema.define(version: 2019_11_13_060326) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "location"
-    t.boolean "guide", default: false
+    t.boolean "is_guide", default: false
     t.text "dp"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
