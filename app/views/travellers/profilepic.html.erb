@@ -1,0 +1,16 @@
+<h1>Change Picture</h1>
+
+
+<div class="form-group">
+  <%= form_with scope: :user, model: @user, local: true do |form| %>
+ 
+<%= form.label :Image %>
+<%= form.file_field :image, :class => 'form-control-file text-center' %>
+<br>
+<br>
+  <p>
+    <%= form.submit 'Add Picture', :class => 'btn btn-success btn-lg' %>
+  </p>
+
+  <%= link_to 'Back', root_path %>
+<% end %>
