@@ -6,6 +6,8 @@ class TravellersController < ApplicationController
     @user = current_user
     @users = User.all
     @conversations = Conversation.all
+
+
   end
 
   def findguide
