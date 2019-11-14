@@ -1,0 +1,23 @@
+
+	<%= form_with scope: :travellers, url: '/travellers/searchresults', local:true do %>
+	  <p>
+	   <%= text_field_tag :search, params[:search], placeholder: 'location', :required=> true%>
+	  </p>
+
+	     <p>
+	   <table>
+		    <%@categories.each do |category|%>
+		 <tr>
+		    <td>
+		  <input type="checkbox" value = "<%=category.id%>" name = "experience[category_ids][]"><%=category.name%>
+		    </td>
+		</tr>
+
+		<%end%>
+		</table>
+		  </p>
+
+	 <%= submit_tag "Find Guide", :name=>nil, class: 'btn btn-success' %>
+
+
+	<% end %>

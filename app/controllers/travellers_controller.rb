@@ -39,6 +39,8 @@ class TravellersController < ApplicationController
 
   def persistentresults
      @categories = Category.all
+     @reviews = Review.all
+     @user = current_user
     @parameter = session[:search]
      @guides = Guide.joins(:user).where('location LIKE :search', search: @parameter)
     @guides_ids = @guides.map{|x|x.id}
