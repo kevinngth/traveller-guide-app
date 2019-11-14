@@ -42,10 +42,10 @@
 						</div>
 				</div>
 				<div class="col-3" style="padding:2%">
-					<%if x.user.dp === nil%>
+					<%if x.user.avatar.attached? === false%>
 				    <img src = "https://dcist.com/wp-content/uploads/sites/3/2019/04/Gem2-768x689.jpg" class = "img-fluid rounded-circle"/>
 				   <%else%>
-				     <img src = "<%=x.user.dp%>" class = "img-fluid rounded-circle"/>
+				     <img src = '<%= url_for(x.user.avatar) %>' class = "img-fluid rounded-circle"/>
 				   <%end%>
 				</div>
 		</div>
