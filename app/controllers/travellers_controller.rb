@@ -76,8 +76,21 @@ class TravellersController < ApplicationController
     end
   end
 
+ def profilepic
+
+ end
+
+ def createpic
+  
+ end
+
   private def guide_params
     params.require(:guide).permit(:bio)
+  end
+
+
+  def user_params
+    params.require(:user).permit(:name, :email, :location)
   end
 
 end

@@ -82,7 +82,9 @@
 
          <% sender = User.find(conversation.sender_id) %>
 
+ 
        <h3><%= link_to sender.name, conversation_messages_path(conversation)%></h3>
+
       <% end %>
      <% end %>
 
