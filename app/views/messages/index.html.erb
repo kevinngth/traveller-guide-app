@@ -3,15 +3,13 @@
 
 
 
-<div id="msg" class="container text-center border">
-
-
+<div id="msg" class="container text-center border p-3">
 
  <% @messages.each do |message| %>
   <% if message.body %>
    <% user = User.find(message.user_id) %>
    
-<div >
+<div class="m-1" >
 <strong><%= user.name %> </strong>: <%= message.body %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <small class="text-muted border" ><%= time_ago_in_words(message.created_at) %> ago</small> 
 </div>
    

@@ -4,8 +4,8 @@ class GuidesController < ApplicationController
     @user = current_user
     @guide = @user.guide
     @conversations = Conversation.all
-    @reviews = Review.all
-  p @reviews[0].body
+    @reviews = Review.all.sort_by(&:created_at).reverse
+  
   end
 
   def show
