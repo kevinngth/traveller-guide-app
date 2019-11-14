@@ -82,10 +82,12 @@
 
          <% sender = User.find(conversation.sender_id) %>
 
-       <h3><%= link_to sender.name, conversation_messages_path(conversation)%></h3> 
+ 
+       <h3><%= link_to sender.name, conversation_messages_path(conversation)%></h3>
+
       <% end %>
      <% end %>
-  
+
   </div>
 
 
@@ -118,13 +120,9 @@
 
 <% end %>
   <% end %>
-  
+
   </div>
 </div>
 </div>
 
 <a href="/guides/<%= @user.id %>/experiences/new" class="btn btn-block btn-success mt-5">Add Experiences</a>
-
-
-
-
