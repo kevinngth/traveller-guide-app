@@ -1,6 +1,6 @@
 <%# greeting banner %>
 <div class="rounded" style="height: 250px; z-index: -1; background: url(https://images.unsplash.com/photo-1520681279154-51b3fb4ea0f7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80) no-repeat center center fixed; background-size: cover;"></div>
-<div style="margin-right: 1rem; margin-top: -75px; width: 150px; height: 150px; border-radius: 50%; background-repeat: no-repeat; background-position: center center; background-size: cover; background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSgz00XOgwqfQTlyHBYKegoGrV3kFsuEAHY96ZVVDzSJkD3-z2q')" class="ml-auto"></div>
+<div style="border: .5rem solid white; margin-right: 1rem; margin-top: -75px; width: 150px; height: 150px; border-radius: 50%; background-repeat: no-repeat; background-position: center center; background-size: cover; background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSgz00XOgwqfQTlyHBYKegoGrV3kFsuEAHY96ZVVDzSJkD3-z2q')" class="ml-auto"></div>
 <h1 style="margin-top: -75px;" class="display-4">Hello, <span class="text-secondary"><%= @user.name %></span></h1>
 <p class="lead">Your location: <%= @user.location %></p>
 <a class="btn btn-outline-secondary btn-sm"><i class="fas fa-user-edit"></i></a>
@@ -31,7 +31,7 @@
   				<% else %>
   					<% recipient = User.find(conversation.sender_id) %>
   				<% end %>
-  				<div class="alert alert-secondary" role="alert">
+  				<div class="alert alert-secondary d-flex justify-content-between" role="alert">
   					<%= link_to recipient.name, conversation_messages_path(conversation), :class => "text-dark"%>
             <a href="/guides/<%=recipient.id%>/reviews/new">Leave A Review</a>
   				</div>
@@ -45,7 +45,7 @@
 	</div>
 </div>
 <%# hidden only on xs %>
-<div class="d-none d-sm-block">
+<div class="container d-none d-sm-block">
 	<div class="row">
 <%# conversations column %>
 		<div class="card col-6 px-0">
@@ -58,10 +58,10 @@
 						<% else %>
 							<% recipient = User.find(conversation.sender_id) %>
 						<% end %>
-						<h5 class="card-title">
-							<%= link_to recipient.name, conversation_messages_path(conversation), :class => "text-dark"%>
-						</h5>
-              <a href="/guides/<%=recipient.id%>/reviews/new">Leave A Review</a>
+						<span class="card-title d-flex justify-content-between">
+							<%= link_to recipient.name, conversation_messages_path(conversation), :class => "text-dark lead mt-2"%>
+							<a class="btn btn-outline-secondary btn-sm" href="/guides/<%=recipient.id%>/reviews/new">Leave a review</a>
+						</span>
 						<hr>
 					<% end %>
 				<% end %>
