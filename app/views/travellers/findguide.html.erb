@@ -1,30 +1,32 @@
+<div class = "container">
+	<div class = "jumbotron" style = "background-image: url(https://picsum.photos/id/1002/4310/2860); background-size: cover; background-repeat: no-repeat; height:100%">
+	</div>
 
-<div class = "d-flex justify-content-center">
-	<img src="https://picsum.photos/id/1002/431/286"/>
-</div>
-<br/>
+	<div>
+	<h3>Where are you going, <%=@name%>?</h3>
 
-<h3>Where are you going, <%=@name%>?</h3>
 
-<%= form_with scope: :travellers, url: '/guides', local:true do %>
-  <p>
-   <%= text_field_tag :search, params[:search]%>
-  </p>
-
-     <p>
-   <table>
-	    <%@categories.each do |category|%>
-	 <tr>
-	    <td>
-	  <input type="checkbox" value = "<%=category.id%>" name = "experience[category_ids][]"><%=category.name%>
-	    </td>
-	</tr>
-
-	<%end%>
-	</table>
+	<%= form_with scope: :travellers, url: '/travellers/findguide', local:true do %>
+	  <p>
+	   <%= text_field_tag :search, params[:search], placeholder: 'location', :required=> true%>
 	  </p>
 
-  <p><%= submit_tag "Find Guide", :name=>nil %>
+	     <p>
+	   <table>
+		    <%@categories.each do |category|%>
+		 <tr>
+		    <td>
+		  <input type="checkbox" value = "<%=category.id%>" name = "experience[category_ids][]"><%=category.name%>
+		    </td>
+		</tr>
 
-  </p>
-<% end %>
+		<%end%>
+		</table>
+		  </p>
+
+	 <%= submit_tag "Find Guide", :name=>nil, class: 'btn btn-success' %>
+
+
+	<% end %>
+	</div>
+</div>

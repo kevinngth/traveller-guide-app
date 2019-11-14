@@ -1,15 +1,13 @@
 Rails.application.routes.draw do
- 
-   post '/guides' => 'travellers#createsearch'
- 
+
   root 'travellers#index'
- 
+
 
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  post 'travellers/' => 'travellers#createsearch'
   get 'travellers/dashboard' => 'travellers#index'
   get 'travellers/findguide' => 'travellers#findguide'
+  post 'travellers/findguide' => 'travellers#createsearch'
   get '/travellers/becomeaguide' =>  'travellers#becomeaguide', as: 'user'
   post '/travellers/becomeaguide' => 'travellers#makeguide'
 
@@ -25,6 +23,6 @@ Rails.application.routes.draw do
   resources :conversations do
     resources :messages
   end
- 
+
 
 end
