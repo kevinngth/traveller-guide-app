@@ -1,6 +1,6 @@
 <%= form_with scope: :travellers, url: '/travellers/searchresults', local:true do %>
 	  <p>
-	   <%= text_field_tag :search, params[:search], placeholder: 'location', :required=> true, :class=>'form-control'%>
+	   <%= text_field_tag :search, params[:search], placeholder: 'location', :required=> true, :class=>'form-control', :id=>'search_term'%>
 	  </p>
 
 
@@ -28,3 +28,25 @@
 
 
 	<% end %>
+
+	<script type = "text/javascript">
+		let searchBar = document.getElementById('search_term')
+		var responseHandler = function() {
+		new google.maps.places.Autocomplete(searchBar, {types: ['(cities)']})
+		};
+
+		// make a new request
+		var request = new XMLHttpRequest();
+
+		// listen for the request response
+		request.addEventListener("load", responseHandler);
+
+		var url = "";
+		request.open("GET", url);
+
+		// send the request
+		request.send();
+
+	</script>
+
+<script src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDvj3ORRNNhdf-Yv8R8AHZjqX_jHcnrxqo&&libraries=places'></script>
