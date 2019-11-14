@@ -1,14 +1,15 @@
-<h1>Make A Review</h1>
+<h1>Leave A Review for <%=  %></h1>
 
 
-<%= form_with scope: :review, model: @review, local: true do |f| %>
+<%= form_with scope: :review, url: guide_reviews_path , local: true do |f| %>
 
   <p>
     <%= f.label :Review %><br>
     <%= f.text_area :body %>
   </p>
 
-  <%= f.hidden_field :user_id, :value => @user.id %>
+  <%= f.hidden_field :user_id, :value => @user.id.to_i %>
+  <%= f.hidden_field :guide_id, :value => @guide %>
 
 
 <p>

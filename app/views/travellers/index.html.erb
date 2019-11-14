@@ -33,6 +33,7 @@
   				<% end %>
   				<div class="alert alert-secondary" role="alert">
   					<%= link_to recipient.name, conversation_messages_path(conversation), :class => "text-dark"%>
+            <a href="/guides/<%=recipient.id%>/reviews/new">Leave A Review</a>
   				</div>
   			<% end %>
   		<% end %>
@@ -60,6 +61,7 @@
 						<h5 class="card-title">
 							<%= link_to recipient.name, conversation_messages_path(conversation), :class => "text-dark"%>
 						</h5>
+              <a href="/guides/<%=recipient.id%>/reviews/new">Leave A Review</a>
 						<hr>
 					<% end %>
 				<% end %>

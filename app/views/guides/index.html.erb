@@ -91,7 +91,19 @@
 
 
   <%# REVIEWS %>
-  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Reviews</div>
+  <div class="tab-pane fade mt-4" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+  <% @reviews.each do |review|%>
+<% if review.guide_id == @user.id %>
+
+<blockquote class="blockquote text-center">
+  <p class="mb-0"><%= review.body %></p>
+  <footer class="blockquote-footer"> <cite title="Source Title"><%= review.user.name %></cite></footer>
+</blockquote>
+
+<% end %>
+  <% end %>
+  
+  </div>
 </div>
 </div>
 
