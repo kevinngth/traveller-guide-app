@@ -95,10 +95,26 @@
   <% @reviews.each do |review|%>
 <% if review.guide_id == @user.id %>
 
-<blockquote class="blockquote text-center">
-  <p class="mb-0"><%= review.body %></p>
-  <footer class="blockquote-footer"> <cite title="Source Title"><%= review.user.name %></cite></footer>
-</blockquote>
+<div class="row mt-3 border-bottom pb-3">
+<div class="col-2 mt-3">
+<% review.rating.times do%>
+
+ <i class="fa fa-star" aria-hidden="true"></i>
+<% end %>
+
+<p>Rating: <%= review.rating %></p>
+
+<p>User: <strong><%= review.user.name %></strong> </p>
+</div>
+
+<div class="col-10 border rounded p-5" style="background-color: #F5F5F5 ">
+ <p> "<%= review.body %>"</p>
+
+
+<small class="text-muted">Reviewed On  <%= review.created_at.strftime("%B %-d, %Y") %></small>
+</div>
+
+</div>
 
 <% end %>
   <% end %>
