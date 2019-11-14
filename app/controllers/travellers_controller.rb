@@ -10,14 +10,11 @@ class TravellersController < ApplicationController
 
   def findguide
     @name = current_user.name
-
-
     @categories = Category.all
-
-
   end
 
   def createsearch
+    @categories = Category.all
     @parameter = params[:search]
     @guides = Guide.joins(:user).where('location LIKE :search', search: @parameter)
 
@@ -25,9 +22,29 @@ class TravellersController < ApplicationController
 
     @rating = rand(5).floor
 
+    session[:search]= params[:search]
+
     if params.has_key?(:experience)
+      session[:experience] = params[:experience]
       x = params[:experience][:category_ids]
       x = x.map{|y| y.to_i}
+      @experiences = Experience.where('category_id IN (?) AND guide_id IN (?)', x,@guides_ids)
+    else
+      @experiences = Experience.where('guide_id IN (?)', @guides_ids)
+    end
+
+    ids = @experiences.distinct(:guide_id).pluck(:guide_id).map{|y| y}
+    @unique = Guide.where('id IN (?)',ids)
+  end
+
+  def persistentresults
+     @categories = Category.all
+    @parameter = session[:search]
+     @guides = Guide.joins(:user).where('location LIKE :search', search: @parameter)
+    @guides_ids = @guides.map{|x|x.id}
+
+    if params.has_key?(:experience)
+      x = session[:experience][:category_ids].map{|y| y.to_i}
       @experiences = Experience.where('category_id IN (?) AND guide_id IN (?)', x,@guides_ids)
     else
       @experiences = Experience.where('guide_id IN (?)', @guides_ids)
