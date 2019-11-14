@@ -6,7 +6,7 @@
 	<h3>Where are you going, <%=@name%>?</h3>
 
 
-	<%= form_with scope: :travellers, url: '/travellers/findguide', local:true do %>
+	<%= form_with scope: :travellers, url: '/travellers/searchresults', local:true do %>
 	  <p>
 	   <%= text_field_tag :search, params[:search], placeholder: 'location', :required=> true%>
 	  </p>
