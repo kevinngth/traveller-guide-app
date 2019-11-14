@@ -3,17 +3,24 @@
 
 
 
-<div id="msg" class="container text-center border p-3">
+<div id="msg" class="container  border p-3" style="overflow:scroll background-color: #DBD5CE">
 
  <% @messages.each do |message| %>
   <% if message.body %>
    <% user = User.find(message.user_id) %>
+   <% if user.id == current_user.id %>
+ 
    
-<div class="m-1" >
-<strong><%= user.name %> </strong>: <%= message.body %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <small class="text-muted border" ><%= time_ago_in_words(message.created_at) %> ago</small> 
+<div class="text-right p-2 rounded" > 
+<span style="background-color: #FFFFFF;" class="p-3 rounded mt-2">
+  <% else %>
+
+<div class=" text-left p-2 rounded"  >
+<span style="background-color: #E1F6CB" class="p-3 rounded mt-2">
+  <% end %>
+<strong>  <%= user.name %> </strong>: <%= message.body %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <small class="text-muted " ><%= time_ago_in_words(message.created_at) %> ago</small> 
+</span>
 </div>
-   
-   <strong></strong>
 
  <% end %>
 <% end %>
