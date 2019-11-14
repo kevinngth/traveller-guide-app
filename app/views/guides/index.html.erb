@@ -1,128 +1,216 @@
-<h1>Hello <%= @user.name  %></h1>
-
+<%# greeting banner %>
+<%= render "shared/dashboardheader", locales: {:user => @user} %>
+<a href="/travellers" class="btn btn-outline-secondary btn-sm mb-5">Traveller's home page</a>
+<%# dashboard main %>
 <div class="container">
-<div class="row">
-<div class="col-8 border">
-<p>Your guide profile</p>
-
-<p><%= @guide.bio %></p>
-
-<p>Completed Trips: 0</p>
+	<div class="row mb-5">
+		<div class="col-8">
+			<p class="lead">Your bio: <span class="text-secondary"><%= @guide.bio %></span></p>
+			<p class="lead">Completed Trips: <span class="text-secondary">0</span></p>
+			<p class="lead">
+				Your interests:
+				<% interests = [] %>
+				<% @guide.experiences.each do |experience| %>
+					<% if !interests.include?(experience.category.name) %>
+						<% interests.push(experience.category.name) %>
+					<% end %>
+				<% end %>
+				<% interests.each do |interest| %>
+					<span class="badge badge-pill badge-success"><%= interest %></span>
+				<% end %>
+			</p>
+		</div>
+		<div class="col-4 border-left">
+			<p class="lead text-center">Your average rating:</p>
+			<% if @reviews.where(guide_id: @user.guide.id).average("rating") %>
+				<p class="lead text-center">
+					<% average_rating = @reviews.where(guide_id: @user.guide.id).average("rating").round(1) %>
+					<span><%= average_rating %></span>
+				</p>
+				<p class="lead text-center text-success">
+					<% average_rating.to_i.times do %>
+	 					<i class="fas fa-star"></i>
+					<% end %>
+					<% (5-average_rating.to_i).times do %>
+						<i class="far fa-star"></i>
+					<% end %>
+				</p>
+			<% else %>
+				<p class="h4 text-center text-secondary">- -</p>
+			<% end %>
+		</div>
+	</div>
 </div>
 
-<div class="col-4 ">
-<div class="row">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSgz00XOgwqfQTlyHBYKegoGrV3kFsuEAHY96ZVVDzSJkD3-z2q" alt="" style="border-radius:50%; width:250px; height:250px;" class="m-auto">
-</div>
-<div class="row mt-2">
-<div class="btn-group btn-group-toggle m-auto data-toggle="buttons">
-  <label class="btn btn-primary active">
-    <input type="radio" name="options" id="option1" autocomplete="off" checked> Active
-  </label>
-  <label class="btn btn-warning">
-    <input type="radio" name="options" id="option2" autocomplete="off"> InActive
-  </label>
-
-</div>
-
-</div>
-
-
-
-</div>
-
-</div>
-
-</div>
-
-<div class="container mt-3">
-<ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="experiences" aria-selected="true">Experiences</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="messages" aria-selected="false">Messages</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
-  </li>
-</ul>
-<div class="tab-content" id="myTabContent">
-
-<%# EXPERIENCES %>
-  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-
-<div class="accordion mt-3" id="accordionExample">
-	<% @guide.experiences.each do |experience| %>
-	  <div class="card">
-	    <div class="card-header" id="headingOne">
-	      <h2 class="mb-0">
-	        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#<%= experience.title %>">
-	          <%= experience.title %>
-	        </button>
-	      </h2>
-	    </div>
-
-	    <div id="<%= experience.title %>" class="collapse" data-parent="#accordionExample">
-	      <div class="card-body">
-	        <%= experience.description %>
-	      </div>
-	    </div>
+<%# visible only on xs %>
+<div class="d-block d-sm-none">
+	<ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+	  <li class="nav-item">
+	    <a class="nav-link" id="experiences-tab" data-toggle="tab" href="#experiences" role="tab">Experiences</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link active" id="conversations-tab" data-toggle="tab" href="#conversations" role="tab">Messages</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab">Reviews</a>
+	  </li>
+	</ul>
+	<div class="tab-content mb-5" id="myTabContent">
+<%# experiences tab %>
+  	<div class="tab-pane fade show" id="experiences" role="tabpanel">
+			<div class="accordion" id="experience_accordion">
+				<% @guide.experiences.each do |experience| %>
+	  			<div class="card">
+	    			<div class="card-header" id="headingOne">
+	      			<h2 class="mb-0">
+	        			<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#<%= experience.title %>">
+	          			<%= experience.title %>
+	        			</button>
+	      			</h2>
+	    			</div>
+	    			<div id="<%= experience.title %>" class="collapse" data-parent="#experience_accordion">
+	      			<div class="card-body">
+	        			<%= experience.description %>
+	      			</div>
+	    			</div>
+	  			</div>
+	  		<% end %>
+			</div>
+			<a href="/guides/<%= @user.id %>/experiences/new" class="btn btn-block btn-success">Add Experiences</a>
+		</div>
+<%# conversations tab %>
+	  <div class="mt-3 tab-pane fade show active" id="conversations" role="tabpanel">
+	  	<% if @conversations.where(recipient_id: @guide.user).empty? %>
+	  		<div class="text-center">
+	  			<h1 class="display-4">No messages yet</h1>
+	  		</div>
+	  	<% else %>
+		  	<% @conversations.each do |conversation| %>
+	  			<% if conversation.recipient_id == current_user.id %>
+	  				<% sender = User.find(conversation.sender_id) %>
+	  				<div class="alert alert-secondary d-flex justify-content-between" role="alert">
+							<%= link_to sender.name, conversation_messages_path(conversation), :class => "text-dark"%>
+						</div>
+	  			<% end %>
+	  		<% end %>
+	  	<% end %>
 	  </div>
-	  <% end %>
+<%# reviews tab %>
+	  <div class="tab-pane fade show mt-4" id="reviews" role="tabpanel">
+	  	<% if @guide.reviews.empty? %>
+	  		<div class="text-center">
+	  			<h1 class="display-4">No reviews yet</h1>
+	  		</div>
+	  	<% else %>
+		  	<% @reviews.each do |review|%>
+		  		<% if review.guide_id == @user.id %>
+		  			<div class="row mt-3 border-bottom pb-3">
+	  					<div class="col-4 mt-3 text-center">
+	  						<small class="lead text-center text-success">
+									<% review.rating.times do %>
+					 					<i class="fas fa-star"></i>
+									<% end %>
+									<% (5-review.rating).times do %>
+										<i class="far fa-star"></i>
+									<% end %>
+								</small>
+								<p class="mt-1">By: <strong class="text-secondary"><%= review.user.name %></strong></p>
+								<small class="text-muted">On <%= review.created_at.strftime("%B %-d, %Y") %></small>
+							</div>
+							<div class="col-8 border rounded d-flex justify-content-center align-items-center bg-light">
+								<p>"<%= review.body %>"</p>
+							</div>
+						</div>
+					<% end %>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
 </div>
+<%# hidden only on xs %>
+<div class="container d-none d-sm-block">
+	<div class="row">
+<%# conversations column %>
+		<div class="col-12 mb-4">
+			<div class="card px-0">
+		  	<h5 class="card-header">Messages</h5>
+				<div class="card-body">
+					<% if @conversations.where(recipient_id: @guide.user).empty? %>
+			  		<div class="text-center">
+			  			<h1 class="display-4">No messages yet</h1>
+			  		</div>
+			  	<% else %>
+				  	<% @conversations.each do |conversation| %>
+			  			<% if conversation.recipient_id == current_user.id %>
+			  				<% sender = User.find(conversation.sender_id) %>
+			  				<div class="alert alert-secondary d-flex justify-content-between" role="alert">
+									<%= link_to sender.name, conversation_messages_path(conversation), :class => "text-dark"%>
+								</div>
+			  			<% end %>
+			  		<% end %>
+			  	<% end %>
+				</div>
+			</div>
+		</div>
+<%# experiences column %>
+		<div class="col-4">
+			<div class="card px-0">
+				<h5 class="card-header">Experiences</h5>
+				<div class="accordion" id="experience_accordion">
+					<% @guide.experiences.each do |experience| %>
+		  			<div class="card">
+		    			<div class="card-header" id="headingOne">
+		      			<h2 class="mb-0">
+		        			<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#<%= experience.title %>">
+		          			<%= experience.title %>
+		        			</button>
+		      			</h2>
+		    			</div>
+		    			<div id="<%= experience.title %>" class="collapse" data-parent="#experience_accordion">
+		      			<div class="card-body">
+		        			<%= experience.description %>
+		      			</div>
+		    			</div>
+		  			</div>
+		  		<% end %>
+				</div>
+				<a href="/guides/<%= @user.id %>/experiences/new" class="btn btn-block btn-success">Add Experiences</a>
+			</div>
+		</div>
+<%# reviews column %>
+		<div class="col-8">
+			<div class="card px-0">
+		  	<h5 class="card-header">Reviews</h5>
+				<div class="card-body">
+					<% if @guide.reviews.empty? %>
+			  		<div class="text-center">
+			  			<h1 class="display-4">No reviews yet</h1>
+			  		</div>
+			  	<% else %>
+				  	<% @reviews.each do |review|%>
+				  		<% if review.guide_id == @user.id %>
+				  			<div class="row mt-3 border-bottom pb-3">
+			  					<div class="col-4 mt-3 text-center">
+			  						<small class="lead text-center text-success">
+											<% review.rating.times do %>
+							 					<i class="fas fa-star"></i>
+											<% end %>
+											<% (5-review.rating).times do %>
+												<i class="far fa-star"></i>
+											<% end %>
+										</small>
+										<p class="mt-1">By: <strong class="text-secondary"><%= review.user.name %></strong></p>
+										<small class="text-muted">On <%= review.created_at.strftime("%B %-d, %Y") %></small>
+									</div>
+									<div class="col-8 border rounded d-flex justify-content-center align-items-center bg-light">
+										<p>"<%= review.body %>"</p>
+									</div>
+								</div>
+							<% end %>
+						<% end %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-
-
-
-  <%# Messages %>
-  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
- <% @conversations.each do |conversation| %>
-      <% if conversation.recipient_id == current_user.id %>
-
-         <% sender = User.find(conversation.sender_id) %>
-
- 
-       <h3><%= link_to sender.name, conversation_messages_path(conversation)%></h3>
-
-      <% end %>
-     <% end %>
-
-  </div>
-
-
-
-  <%# REVIEWS %>
-  <div class="tab-pane fade mt-4" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-  <% @reviews.each do |review|%>
-<% if review.guide_id == @user.id %>
-
-<div class="row mt-3 border-bottom pb-3">
-<div class="col-2 mt-3">
-<% review.rating.times do%>
-
- <i class="fa fa-star" aria-hidden="true"></i>
-<% end %>
-
-<p>Rating: <%= review.rating %></p>
-
-<p>User: <strong><%= review.user.name %></strong> </p>
-</div>
-
-<div class="col-10 border rounded p-5" style="background-color: #F5F5F5 ">
- <p> "<%= review.body %>"</p>
-
-
-<small class="text-muted">Reviewed On  <%= review.created_at.strftime("%B %-d, %Y") %></small>
-</div>
-
-</div>
-
-<% end %>
-  <% end %>
-
-  </div>
-</div>
-</div>
-
-<a href="/guides/<%= @user.id %>/experiences/new" class="btn btn-block btn-success mt-5">Add Experiences</a>
