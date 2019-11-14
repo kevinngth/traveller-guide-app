@@ -5,7 +5,6 @@ class GuidesController < ApplicationController
     @guide = @user.guide
     @conversations = Conversation.all
     @reviews = Review.all
-  p @reviews[0].body
   end
 
   def show
