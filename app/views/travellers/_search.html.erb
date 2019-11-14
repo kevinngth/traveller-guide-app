@@ -1,23 +1,30 @@
-
-	<%= form_with scope: :travellers, url: '/travellers/searchresults', local:true do %>
+<%= form_with scope: :travellers, url: '/travellers/searchresults', local:true do %>
 	  <p>
-	   <%= text_field_tag :search, params[:search], placeholder: 'location', :required=> true%>
+	   <%= text_field_tag :search, params[:search], placeholder: 'location', :required=> true, :class=>'form-control'%>
 	  </p>
 
-	     <p>
-	   <table>
-		    <%@categories.each do |category|%>
-		 <tr>
-		    <td>
-		  <input type="checkbox" value = "<%=category.id%>" name = "experience[category_ids][]"><%=category.name%>
-		    </td>
-		</tr>
 
-		<%end%>
-		</table>
-		  </p>
 
-	 <%= submit_tag "Find Guide", :name=>nil, class: 'btn btn-success' %>
+<div class="dropdown">
+  <button class="btn btn-block btn-outline-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Categories
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+     <%@categories.each do |category|%>
+   		     <li>
+                <div class="checkbox">
+                    <label>
+				  <input type="checkbox" value = "<%=category.id%>" name = "experience[category_ids][]">
+                        <%=category.name%>
+                    </label>
+                </div>
+            </li>
+     <%end%>
+  </div>
+</div>
+
+
+	 <%= submit_tag "New Search", :name=>nil, class: 'btn btn-success btn-block' %>
 
 
 	<% end %>
