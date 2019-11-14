@@ -1,19 +1,18 @@
 <h1 style = "text-align: center">Guides in <%=@parameter%></h1>
 
 <div class = "container">
-	<div class = "row">
 
-	<div class = "col-3">
-	<%= render :partial => 'search-lg' %>
+	<div class = "col-3-md">
+	<%= render :partial => 'search' %>
 	</div>
 
 <%if @experiences.length != 0%>
 
-	<div class = "col-9">
-
+	<div class = "col-9-md">
+			<div class = "container">
 		<%@unique.each do |x|%>
 
-		<div class="row border mb-3">
+		<div class="row border mt-3">
 			<div class="col-3" style="padding:2%">
 				  <% if @reviews.where(guide_id: x).average("rating") %>
                 <p class="lead text-center">
@@ -50,9 +49,9 @@
 				</div>
 		</div>
 			<% end %>
-
+		</div>
 	</div>
-</div>
+
 </div>
 
 

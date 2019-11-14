@@ -37,9 +37,12 @@ class TravellersController < ApplicationController
 
     ids = @experiences.distinct(:guide_id).pluck(:guide_id).map{|y| y}
     @unique = Guide.where('id IN (?)',ids)
+
+    redirect_to '/travellers/searchresults'
   end
 
   def persistentresults
+
      @categories = Category.all
      @reviews = Review.all
      @user = current_user
@@ -56,6 +59,10 @@ class TravellersController < ApplicationController
 
     ids = @experiences.distinct(:guide_id).pluck(:guide_id).map{|y| y}
     @unique = Guide.where('id IN (?)',ids)
+
+    # @rating = Guide.joins(:reviews).where('guide_id IN (?)',ids)
+    # p '@@@@@@@@@@@@@@'
+    # p @rating
 
   end
 
@@ -81,7 +88,7 @@ class TravellersController < ApplicationController
  end
 
  def createpic
-  
+
  end
 
   private def guide_params
