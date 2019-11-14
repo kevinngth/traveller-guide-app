@@ -6,6 +6,7 @@ class GuidesController < ApplicationController
     @conversations = Conversation.all
     @reviews = Review.all.sort_by(&:created_at).reverse
   
+
   end
 
   def show

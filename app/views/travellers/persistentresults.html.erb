@@ -5,14 +5,13 @@
 	<%= render :partial => 'search' %>
 	</div>
 
-	<%if @experiences.length != 0%>
+<%if @experiences.length != 0%>
 
 	<div class = "col-9">
 		<%@unique.each do |x|%>
 		<div class="row border mt-3">
 			<div class="col-3">
 				  Review ratings and stars and stuff!
-
 				</div>
 	    <div class="col-6 d-flex justify-content-flex-end">
 						<div>
@@ -36,5 +35,4 @@
 <div class = "col-9">
 	<h5 class = "alert-danger"> Sorry, no match!</h5>
 </div>
-
 <%end%>

@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get 'travellers/dashboard' => 'travellers#index'
   get 'travellers/findguide' => 'travellers#findguide'
-  post 'travellers/findguide' => 'travellers#createsearch'
+  post 'travellers/searchresults' => 'travellers#createsearch'
+  get 'travellers/searchresults'=> 'travellers#persistentresults'
   get '/travellers/becomeaguide' =>  'travellers#becomeaguide', as: 'user'
   post '/travellers/becomeaguide' => 'travellers#makeguide'
 
@@ -18,7 +19,7 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
-  
+
 
   resources :conversations do
     resources :messages
