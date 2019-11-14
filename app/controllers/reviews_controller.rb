@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
     def new
     @user = current_user
     @guide = params[:guide_id]
-    @name = Guide.where(user_id = @guide)
+    @name = User.find(@guide)
     end
 
     def create
@@ -21,6 +21,6 @@ class ReviewsController < ApplicationController
     private
 
     def review_params
-        params.require(:review).permit(:guide_id, :user_id, :body)
+        params.require(:review).permit(:guide_id, :user_id, :body, :rating)
     end
 end
