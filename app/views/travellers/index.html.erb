@@ -1,21 +1,17 @@
 <%# greeting banner %>
-<div class="rounded" style="height: 250px; z-index: -1; background: url(https://images.unsplash.com/photo-1520681279154-51b3fb4ea0f7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80) no-repeat center center fixed; background-size: cover;"></div>
-<div style="border: .5rem solid white; margin-right: 1rem; margin-top: -75px; width: 150px; height: 150px; border-radius: 50%; background-repeat: no-repeat; background-position: center center; background-size: cover; background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSgz00XOgwqfQTlyHBYKegoGrV3kFsuEAHY96ZVVDzSJkD3-z2q')" class="ml-auto"></div>
-<h1 style="margin-top: -75px;" class="display-4">Hello, <span class="text-secondary"><%= @user.name %></span></h1>
-<p class="lead">Your location: <%= @user.location %></p>
-<a class="btn btn-outline-secondary btn-sm"><i class="fas fa-user-edit"></i></a>
+<%= render "shared/dashboardheader", locales: {:user => @user} %>
 <% if @user.guide %>
-	<a href="/guides" class="btn btn-outline-secondary btn-sm">Guide's dashboard</a>
+	<a href="/guides" class="btn btn-outline-secondary btn-sm mb-5">Guide's dashboard</a>
 <% else %>
-	<a href="/travellers/becomeaguide" class="btn btn-outline-secondary btn-sm">Become a guide and showcase your city!</a>
+	<a href="/travellers/becomeaguide" class="btn btn-outline-secondary btn-sm mb-5">Become a guide and showcase your city!</a>
 <% end %>
 <%# dashboard main %>
-<a class = "btn btn-block btn-success my-5" href="/travellers/findguide">Going on an adventure!</a>
+<a class = "btn btn-block btn-success mb-5" href="/travellers/findguide">Going on an adventure!</a>
 <%# visible only on xs %>
 <div class="d-block d-sm-none">
-	<ul class="nav nav-tabs" id="myTab" role="tablist">
+	<ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
 	  <li class="nav-item">
-	    <a class="nav-link active" id="conversations-tab" data-toggle="tab" href="#conversations" role="tab">Conversations</a>
+	    <a class="nav-link active" id="conversations-tab" data-toggle="tab" href="#conversations" role="tab">Messages</a>
 	  </li>
 	  <li class="nav-item">
 	    <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab">Reviews</a>
