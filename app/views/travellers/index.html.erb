@@ -49,7 +49,7 @@
        <% else %>
          <% recipient = User.find(conversation.sender_id) %>
        <% end %>
-       <h3><%= link_to recipient.name, conversation_messages_path(conversation)%></h3>
+       <h3><%= link_to recipient.name, conversation_messages_path(conversation)%> </h3> <a href="/guides/<%=recipient.id%>/reviews/new">Leave A Review</a> 
       <% end %>
      <% end %>
 

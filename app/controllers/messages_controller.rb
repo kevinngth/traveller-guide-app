@@ -15,7 +15,7 @@ class MessagesController < ApplicationController
       @message = @conversation.messages.new(message_params)
       if @message.save
         ActionCable.server.broadcast "room_channel",
-        content: @message.body, user: @message.user.email.split('@')[0].capitalize, created: (@message.created_at)
+        content: @message.body, user: @message.user.name, created: (@message.created_at)
         
         redirect_to conversation_messages_path(@conversation)
         
