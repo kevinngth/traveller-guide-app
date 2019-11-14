@@ -22,9 +22,9 @@
 		</div>
 		<div class="col-4 border-left">
 			<p class="lead text-center">Your average rating:</p>
-			<% if @reviews.where(guide_id: @user.guide.id).average("rating") %>
+			<% if !@guide.reviews.empty? %>
 				<p class="lead text-center">
-					<% average_rating = @reviews.where(guide_id: @user.guide.id).average("rating").round(1) %>
+					<% average_rating = @guide.reviews.average("rating").round(1) %>
 					<span><%= average_rating %></span>
 				</p>
 				<p class="lead text-center text-success">
