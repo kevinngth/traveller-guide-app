@@ -2,7 +2,7 @@
 
 
 
-<%# <div id="msg"></div> %>
+
 <div id="msg" class="container text-center border">
 
 
@@ -11,8 +11,8 @@
   <% if message.body %>
    <% user = User.find(message.user_id) %>
    
-<div>
-<strong><%= user.email.split('@')[0].capitalize %> </strong>: <p><%= message.body %> </p>  <i><%= time_ago_in_words(message.created_at) %> ago</i> 
+<div >
+<strong><%= user.name %> </strong>: <%= message.body %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <small class="text-muted border" ><%= time_ago_in_words(message.created_at) %> ago</small> 
 </div>
    
    <strong></strong>
@@ -22,10 +22,10 @@
 
 </div>
 
-<div class="col">
+<div class="col mt-5">
 <%= form_for [@conversation, @message], remote: true do |f| %>
 <div class="form-group">
-  <%= f.text_area :body, class: "form-control", id: "message_content" %>
+  <%= f.text_area :body, class: "form-control", id: "message_content", placeholder:"Say Something ..." %>
 </div>
   <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
 <div class="form-group">
