@@ -1,22 +1,24 @@
 class ReviewsController < ApplicationController
     def new
     @user = current_user
-    @guide = params[:guide_id]
+    user_guide = params[:guide_id] #this is the user id of a guide
+    @guide = Guide.find_by(user_id: params[:guide_id]).id #this is the guide id
+
     @name = User.find(@guide)
     end
 
     def create
         @review = Review.new(review_params)
-        
+
          @review.save
 
         redirect_to '/travellers'
-        
+
     end
 
     def show
     @review = Review.find(params[:id])
-    
+
     end
     private
 
