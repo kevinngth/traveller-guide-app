@@ -1,24 +1,18 @@
 <h1 style = "text-align: center">Guides in <%=@parameter%></h1>
 
 <div class = "container">
-	<div class = "row">
 
-	<div class = "col-md-3 col-sm-12 mb-3">
-		<div class="d-md-none">
-			<%= render :partial => 'search' %>
-		</div>
-		<div class="d-none d-md-block">
-			<%= render :partial => 'search-lg' %>
-		</div>
+	<div class = "col-3-md">
+	<%= render :partial => 'search' %>
 	</div>
 
 <%if @experiences.length != 0%>
 
-	<div class = "col-md-9 col-sm-12">
-
+	<div class = "col-9-md">
+			<div class = "container">
 		<%@unique.each do |x|%>
 
-		<div class="row border mb-3">
+		<div class="row border mt-3">
 			<div class="col-3" style="padding:2%">
 				  <% if @reviews.where(guide_id: x).average("rating") %>
                 <p class="lead text-center">
@@ -47,17 +41,17 @@
 						</div>
 				</div>
 				<div class="col-3" style="padding:2%">
-					<%if x.user.avatar.attached? === false%>
+					<%if x.user.dp === nil%>
 				    <img src = "https://dcist.com/wp-content/uploads/sites/3/2019/04/Gem2-768x689.jpg" class = "img-fluid rounded-circle"/>
 				   <%else%>
-				     <img src = '<%= url_for(x.user.avatar) %>' class = "img-fluid rounded-circle"/>
+				     <img src = "<%=x.user.dp%>" class = "img-fluid rounded-circle"/>
 				   <%end%>
 				</div>
 		</div>
 			<% end %>
-
+		</div>
 	</div>
-</div>
+
 </div>
 
 
@@ -66,28 +60,3 @@
 	<div class = "alert-danger" > Sorry, no matches!</div>
 </div>
 <%end%>
-
-
-	<script type = "text/javascript">
-		searchBar = document.getElementById('search_term')
-		searchBarLg = document.getElementById('search_term_lg')
-		var responseHandler = function() {
-		new google.maps.places.Autocomplete(searchBar, {types: ['(cities)']})
-		new google.maps.places.Autocomplete(searchBarLg, {types: ['(cities)']})
-		};
-
-		// make a new request
-		var request = new XMLHttpRequest();
-
-		// listen for the request response
-		request.addEventListener("load", responseHandler);
-
-		var url = "";
-		request.open("GET", url);
-
-		// send the request
-		request.send();
-
-	</script>
-
-<script src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDvj3ORRNNhdf-Yv8R8AHZjqX_jHcnrxqo&&libraries=places'></script>

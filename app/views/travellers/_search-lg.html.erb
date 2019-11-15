@@ -1,7 +1,6 @@
-
-	<%= form_with scope: :travellers, url: '/travellers/searchresults', local:true do %>
+<%= form_with scope: :travellers, url: '/travellers/searchresults', local:true do %>
 	  <p>
-	   <%= text_field_tag :search, params[:search], placeholder: 'location', :required=> true%>
+	   <%= text_field_tag :search, params[:search], placeholder: 'location', :required=> true, :class=>'form-control', :id=>'search_term_lg'%>
 	  </p>
 
 	     <p>
@@ -9,7 +8,7 @@
 		    <%@categories.each do |category|%>
 		 <tr>
 		    <td>
-		  <input type="checkbox" value = "<%=category.id%>" name = "experience[category_ids][]"><%=category.name%>
+		  <input type="checkbox" value = "<%=category.id%>" name = "experience[category_ids][]"><span class = "ml-1"><%=category.name%></span>
 		    </td>
 		</tr>
 
@@ -17,7 +16,7 @@
 		</table>
 		  </p>
 
-	 <%= submit_tag "Find Guide", :name=>nil, class: 'btn btn-success' %>
+	 <%= submit_tag "New Search", :name=>nil, class: 'btn btn-success' %>
 
 
 	<% end %>

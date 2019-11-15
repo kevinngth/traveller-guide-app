@@ -1,6 +1,6 @@
 <%= form_with scope: :travellers, url: '/travellers/searchresults', local:true do %>
 	  <p>
-	   <%= text_field_tag :search, params[:search], placeholder: 'location', :required=> true, :class=>'form-control'%>
+	   <%= text_field_tag :search, params[:search], placeholder: 'location', :required=> true, :class=>'form-control', :id=>'search_term'%>
 	  </p>
 
 
