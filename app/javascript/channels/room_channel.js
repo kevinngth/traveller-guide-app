@@ -12,7 +12,7 @@ consumer.subscriptions.create("RoomChannel", {
 
   received(data) {
     // Called when there's incoming data on the websocket for this channel
-    $('#msg').append('<div class="message"> '+'<strong>' + data.user+ '</strong>' + ": " + data.content + '</div>')
+    $('#msg').append('<div class="text-left p-1 rounded mt-4"> '+ '<span style="background-color: #FFFFFF" class="p-3 rounded mt-2">' + '<strong>' + data.user+ '</strong>' + ": " + data.content + '</span>'+ '</div>')
    
   }
 });
