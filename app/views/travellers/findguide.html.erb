@@ -1,12 +1,15 @@
 <div style="height: 720px" class="d-flex justify-content-center align-items-center">
-<div class="row">
 
-	<div class="col-12">
-		<h3 class="display-4"><span style="color: rgba(255,255,255,.7);">Where are you going, <%= @name %>?</span></h3>
+
+<div class = "container">
+<div class="col-12">
+		<p class = "display-3" style="color: rgba(255,255,255,.7); text-align:center">Where are you going, <%= @name %>?</p>
 	</div>
 
-</div>
-<div class="row">
+
+
+
+
 
 	<div class="col-12">
 		<%= form_with scope: :travellers, url: '/travellers/searchresults', local:true do %>
@@ -15,25 +18,29 @@
 		   <%= text_field_tag :search, params[:search], placeholder: 'location', :required=> true, :class=>'form-control', :id=> 'search_term'%>
 		  </p>
 
-			<div class="mb-2 text-white">
+			<div class="mb-2 text-white container">
+				<div class = "row">
 		  	<%@categories.each do |category|%>
-			  	<div style = "margin-left: 10px">
+			  	<div style = "margin-left: 10px" class = "col-3">
 					  <input type="checkbox" value = "<%=category.id%>" name = "experience[category_ids][]">
 					  <span><%=category.name%></span>
 					</div>
 				<%end%>
+			</div>
 			</div>
 
 			<%= submit_tag "Find Guide", :name=>nil, class: 'btn btn-success btn-block' %>
 
 		<% end %>
 	</div>
+</div>
 
-	</div>
+
+
 	</div>
 <script type="text/javascript">
 	console.log('yay!')
-	document.body.style.background = "url(https://images.unsplash.com/photo-1485470733090-0aae1788d5af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjI0MX0&auto=format&fit=crop&w=1091&q=80) no-repeat center center fixed"
+	document.body.style.background = "url(https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80) no-repeat center center fixed"
 	document.body.style["background-size"] = "cover"
 	console.log('wow')
 </script>
