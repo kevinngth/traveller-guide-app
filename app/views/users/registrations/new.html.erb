@@ -10,30 +10,30 @@
   			<%= render "devise/shared/error_messages", resource: resource %>
 
 			  <div class="form-group row">
-			    <%= f.label :email, :class => 'col-3 col-form-label' %><br />
+			    <%= f.label :email, :class => 'text-left col-3 col-form-label' %><br />
 			    <div class="col-9">
-			    	<%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control-plaintext bg-light border rounded-pill" %>
+			    	<%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control-plaintext bg-light border rounded-pill pl-5" %>
 			  	</div>
 			  </div>
 
 			  <div class="form-group row">
-			    <%= f.label :name, :class => 'col-3 col-form-label' %><br />
+			    <%= f.label :name, :class => 'text-left col-3 col-form-label' %><br />
 			    <div class="col-9">
-			    	<%= f.text_field :name, :class => "form-control-plaintext bg-light border rounded-pill" %>
+			    	<%= f.text_field :name, :class => "form-control-plaintext bg-light border rounded-pill pl-5" %>
 			  	</div>
 			  </div>
 
 			  <div class="form-group row">
-			    <%= f.label :location, :class => 'col-3 col-form-label' %><br />
+			    <%= f.label :location, :class => 'text-left col-3 col-form-label' %><br />
 			    <div class="col-9">
-			    	<%= f.text_field :location, autofocus: true, autocomplete: "email", :class => "form-control-plaintext bg-light border rounded-pill" %>
+			    	<%= f.text_field :location, autofocus: true, autocomplete: "email", :class => "form-control-plaintext bg-light border rounded-pill pl-5" %>
 			  	</div>
 			  </div>
 
 			  <div class="form-group row">
-			    <%= f.label :password, :class => 'col-4 col-form-label' %><br />
+			    <%= f.label :password, :class => 'text-left col-4 col-form-label' %><br />
 			    <div class="col-8">
-    				<%= f.password_field :password, autocomplete: "new-password", :class => "form-control-plaintext bg-light border rounded-pill" %>
+    				<%= f.password_field :password, autocomplete: "new-password", :class => "form-control-plaintext bg-light border rounded-pill pl-5" %>
 			  		<% if @minimum_password_length %>
 	  					<em>(<%= @minimum_password_length %> characters minimum)</em>
 	  				<% end %><br />
@@ -41,9 +41,9 @@
 			  </div>
 
   			<div class="form-group row">
-    			<%= f.label :password_confirmation, "Confirm Password", :class => 'col-4 col-form-label' %><br />
+    			<%= f.label :password_confirmation, "Confirm Password", :class => 'text-left col-4 col-form-label' %><br />
     			<div class="col-8">
-    				<%= f.password_field :password_confirmation, autocomplete: "new-password", :class => "form-control-plaintext bg-light border rounded-pill" %>
+    				<%= f.password_field :password_confirmation, autocomplete: "new-password", :class => "form-control-plaintext bg-light border rounded-pill pl-5" %>
   				</div>
   			</div>
 
@@ -51,7 +51,8 @@
 			    <%= f.submit "Sign up", {:class => "btn btn-success btn-block mb-4 rounded-pill"} %>
 			  </div>
 			<% end %>
-
-			<%= render "users/shared/links" %>
+			<div class="mb-5">
+				<%= render "users/shared/links" %>
+			</div>
 	</div>
 </div>
