@@ -11,25 +11,35 @@
 
 
 
-	<div class="col-12">
+	<div class="col-md-12 col-6-sm">
 		<%= form_with scope: :travellers, url: '/travellers/searchresults', local:true do %>
+		 	<div class="container col-10" style = "background-color: white; border-radius: 5px">
+		 		<div class = "row">
+		 			<div class = "col-1">
+		 			</div>
+				  <div class="col-md-10 col-sm-4">
+				   <%= text_field_tag :search, params[:search], placeholder: 'location', :required=> true, :class=>'form-control', :id=> 'search_term', style: 'border:none; text-align:center' %>
+				  </div>
+			  	<div class="col-1">
+			  	<%= button_tag type: 'submit', :name=>nil, class: "btn" do %>
+			  		<i class="fas fa-search text-center"></i>
+			  	<%end%>
+			  	</div>
+		  	</div>
+		  </div>
 
-		  <p>
-		   <%= text_field_tag :search, params[:search], placeholder: 'location', :required=> true, :class=>'form-control', :id=> 'search_term'%>
-		  </p>
-
-			<div class="mb-2 text-white container">
-				<div class = "row">
+			<div class="mt-2 text-white container">
+				<div class = "row" style = "justify-content: center">
 		  	<%@categories.each do |category|%>
 			  	<div style = "margin-left: 10px" class = "col-3">
 					  <input type="checkbox" value = "<%=category.id%>" name = "experience[category_ids][]">
-					  <span><%=category.name%></span>
+					  <span style = "font-size: 1.2em"><%=category.name%></span>
 					</div>
 				<%end%>
 			</div>
 			</div>
 
-			<%= submit_tag "Find Guide", :name=>nil, class: 'btn btn-success btn-block' %>
+
 
 		<% end %>
 	</div>
