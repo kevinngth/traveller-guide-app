@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 categories = Category.create([{name: 'Art and culture'},{name: 'Entertainment'},{name: 'Food and drink'},{name: 'Nature and outdoors'},{name: 'Sports'},{name: 'Health and wellness'},{name: 'Shopping'}])
 
-guides = Guide.create([{user_id:1,active:true,bio:'no'},{user_id:2,active:true,bio:'nono'},{user_id:3,active:true,bio:'nonono'},{user_id:1,active:true,bio:'no'}])
+# guides = Guide.create([{user_id:1,active:true,bio:'no'},{user_id:2,active:true,bio:'nono'},{user_id:3,active:true,bio:'nonono'},{user_id:1,active:true,bio:'no'}])
 
 
-experiences = Experience.create([{category_id:2,title:"skydiving",description:"jump off a plane", guide_id:1},{category_id:5,title:"rock climb",description:"jump off a plane", guide_id:2},{category_id:3,title:"drink",description:"driiiiiiink", guide_id:5}])
+# experiences = Experience.create([{category_id:2,title:"skydiving",description:"jump off a plane", guide_id:1},{category_id:5,title:"rock climb",description:"jump off a plane", guide_id:2},{category_id:3,title:"drink",description:"driiiiiiink", guide_id:5}])
