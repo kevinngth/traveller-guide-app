@@ -1,25 +1,34 @@
-<h1>New experience form</h1>
-<%= form_with scope: :experience, url: guide_experiences_path, local: true do |form| %>
-	<div class="form-group">
-  	<%= form.collection_select(:category_id, @categories, :id, :name, {:include_blank => 'Select category...'}, {:class => "custom-select"}) %>
-  </div>
+<div class="row d-flex justify-content-around">
 
-	<div class="form-group">
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-  </div>
+	<div class="col-12 text-center">
+		<h1 class="display-4">New experience form</h1>
+	</div>
 
-  <div class="form-group">
-    <%= form.label :description %><br>
-    <%= form.text_area :description %>
-  </div>
+	<div class="col-6 text-center">
 
-  <div class="form-group">
-    <%= form.label :img %><br>
-    <%= form.text_field :img %>
-  </div>
+		<%= form_with scope: :experience, url: guide_experiences_path, local: true do |form| %>
+			<div class="form-group">
+		  	<%= form.collection_select(:category_id, @categories, :id, :name, {:include_blank => 'Select category...'}, {:class => "custom-select"}) %>
+		  </div>
 
-  <div class="form-group">
-    <%= form.submit({:class => "btn btn-primary"}) %>
-  </div>
-<% end %>
+			<div class="form-group">
+		    <%= form.label :title %><br>
+		    <%= form.text_field :title, :class => "form-control" %>
+		  </div>
+
+		  <div class="form-group">
+		    <%= form.label :description, "Description of the experience" %><br>
+		    <%= form.text_area :description, :class => "form-control" %>
+		  </div>
+
+		  <div class="form-group">
+		    <%= form.label :img, "Attach an image relevant to the experience" %><br>
+		    <%= form.text_field :img, :class => "form-control" %>
+		  </div>
+
+		  <div class="form-group">
+		    <%= form.submit({:class => "btn btn-success btn-block mb-4 rounded-pill"}) %>
+		  </div>
+		<% end %>
+	</div>
+</div>
