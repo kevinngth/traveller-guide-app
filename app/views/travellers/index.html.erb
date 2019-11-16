@@ -1,4 +1,6 @@
 <%# greeting banner %>
+<div id="notifications"></div>
+
 <%= render "shared/dashboardheader", locales: {:user => @user} %>
 <% if @user.guide %>
 	<a href="/guides" class="btn btn-outline-secondary btn-sm mb-5">Guide's dashboard</a>
@@ -46,7 +48,14 @@
 <%# conversations column %>
 		<div class="col-6 pl-0">
 			<div class="card">
-		  	<h5 class="card-header">Conversations</h5>
+			<% if @unread.to_i > 0 %>
+					<h5 class="card-header" id="notification_header">Conversations <span class="badge badge-info"> Unread Messages</span></h5>
+			<% else %>
+
+					<h5 class="card-header" id="notification_header">Conversations </h5>
+
+			<% end %>
+		  
 				<div class="card-body">
 					<% @conversations.each do |conversation| %>
 						<% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
@@ -56,7 +65,7 @@
 								<% recipient = User.find(conversation.sender_id) %>
 							<% end %>
 							<span class="card-title d-flex justify-content-between">
-								<%= link_to recipient.name, conversation_messages_path(conversation), :class => "text-dark lead mt-2"%>
+								<%= link_to recipient.name, conversation_messages_path(conversation), :class => "text-dark lead mt-2 convo"%>
 								<a class="btn btn-outline-secondary btn-sm" href="/guides/<%=recipient.id%>/reviews/new">Leave a review</a>
 							</span>
 							<hr>
@@ -76,3 +85,11 @@
 		</div>
 	</div>
 </div>
+
+
+<script>
+let convo =document.querySelectorAll('.convo')
+for(let i = 0; i < convo.length; i++) {
+	convo[i].addEventListener('click', () => {document.cookie = "unread=0"})
+}
+</script>

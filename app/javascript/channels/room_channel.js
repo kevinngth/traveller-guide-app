@@ -1,4 +1,6 @@
 import consumer from "./consumer"
+let counter = 0
+
 
 consumer.subscriptions.create("RoomChannel", {
   connected() {
@@ -11,9 +13,26 @@ consumer.subscriptions.create("RoomChannel", {
   },
 
   received(data) {
+  
     // Called when there's incoming data on the websocket for this channel
     $('#msg').append('<div class="text-left p-1 rounded mt-4"> '+ '<span style="background-color: #FFFFFF" class="p-3 rounded mt-2">' + '<strong>' + data.user+ '</strong>' + ": " + data.content + '</span>'+ '</div>')
    
+   
+
+    $('#notifications').append(`<div class="alert alert-warning alert-dismissible fade show" role="alert" >
+ You Have A Message From ${data.user}  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>`)
+    
+$(".alert").delay(4000).slideUp(200, function() {
+    $(this).alert('close');
+});
+
+counter++
+$('#notification_header').html(`Conversations <span class="badge badge-info"> Unread Messages</span>`)
+
+document.cookie = `unread=${counter}`
   }
 });
 

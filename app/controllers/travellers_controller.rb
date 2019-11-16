@@ -5,8 +5,8 @@ class TravellersController < ApplicationController
   def index
     @user = current_user
     @users = User.all
-    @conversations = Conversation.all
-
+    @conversations = Conversation.all.sort_by {|obj| obj.created_at}
+    @unread = cookies[:unread]
 
   end
 
