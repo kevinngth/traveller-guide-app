@@ -2,14 +2,22 @@
 <div id="notifications"></div>
 
 <%= render "shared/dashboardheader", locales: {:user => @user} %>
-<% if @user.guide %>
-	<a href="/guides" class="btn btn-outline-secondary btn-sm mb-5">Guide's dashboard</a>
-<% else %>
-	<a href="/travellers/becomeaguide" class="btn btn-outline-secondary btn-sm mb-5">Become a guide and showcase your city!</a>
-<% end %>
+
 <%# dashboard main %>
-<a class = "btn btn-block btn-success mb-5" href="/travellers/findguide">Going on an adventure!</a>
+
+<div class="container">
+	<% if @user.guide %>
+	<a href="/guides" class="btn btn-outline-secondary btn-sm mb-5 ml-3">Guide's dashboard</a>
+<% else %>
+	<a href="/travellers/becomeaguide" class="btn btn-outline-secondary btn-sm mb-5 ml-3">Become a guide and showcase your city!</a>
+<% end %>
+
+	<div class="col-4 offset-4">
+		<a class = "btn btn-block btn-success mb-5" href="/travellers/findguide">Going on an adventure!</a>
+	</div>
+</div>
 <%# visible only on xs %>
+
 <div class="d-block d-sm-none">
 	<ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
 	  <li class="nav-item">
@@ -49,13 +57,13 @@
 		<div class="col-6 pl-0">
 			<div class="card">
 			<% if @unread.to_i > 0 %>
-					<h5 class="card-header" id="notification_header">Conversations <span class="badge badge-info"> Unread Messages</span></h5>
+					<h5 class="card-header" id="notification_header">Messages <span class="badge badge-info"> Unread Messages</span></h5>
 			<% else %>
 
-					<h5 class="card-header" id="notification_header">Conversations </h5>
+					<h5 class="card-header" id="notification_header">Messages </h5>
 
 			<% end %>
-		  
+
 				<div class="card-body">
 					<% @conversations.each do |conversation| %>
 						<% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
