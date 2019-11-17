@@ -61,14 +61,14 @@
 			<div class="accordion" id="experience_accordion">
 				<% @guide.experiences.each do |experience| %>
 	  			<div class="card">
-	    			<div class="card-header" id="headingOne">
+	    			<div class="card-header" id="heading<%=experience.id%>">
 	      			<h2 class="mb-0">
-	        			<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#<%= experience.title %>">
+	        			<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<%=experience.id%>">
 	          			<%= experience.title %>
 	        			</button>
 	      			</h2>
 	    			</div>
-	    			<div id="<%= experience.title %>" class="collapse" data-parent="#experience_accordion">
+	    			<div id="collapse<%=experience.id%>" class="collapse" data-parent="#experience_accordion">
 	      			<div class="card-body">
 	        			<%= experience.description %>
 	      			</div>
@@ -159,14 +159,14 @@
 				<div class="accordion" id="experience_accordion">
 					<% @guide.experiences.each do |experience| %>
 		  			<div class="card">
-		    			<div class="card-header" id="headingOne">
+		    			<div class="card-header" id="heading<%=experience.id%>">
 		      			<h2 class="mb-0">
-		        			<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#<%= experience.title %>">
+		        			<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<%=experience.id%>">
 		          			<%= experience.title %>
 		        			</button>
 		      			</h2>
 		    			</div>
-		    			<div id="<%= experience.title %>" class="collapse" data-parent="#experience_accordion">
+		    			<div id="collapse<%=experience.id%>" class="collapse" data-parent="#experience_accordion">
 		      			<div class="card-body">
 		        			<%= experience.description %>
 		      			</div>
