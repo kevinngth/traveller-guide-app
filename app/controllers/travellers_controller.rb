@@ -19,6 +19,7 @@ class TravellersController < ApplicationController
     @categories = Category.all
     @parameter = params[:search].capitalize
     @guides = Guide.joins(:user).where('location LIKE :search', search: @parameter)
+      @reviews = Review.all
 
     @guides_ids = @guides.map{|x|x.id}
 
@@ -36,8 +37,10 @@ class TravellersController < ApplicationController
     end
 
     ids = @experiences.distinct(:guide_id).pluck(:guide_id).map{|y| y}
-    @unique = Guide.where('id IN (?)',ids)
-
+    @unique = Guide.where('id IN (?)',ids).sort_by{|guide| @reviews.where(guide_id: guide).average("rating")|| 0}.reverse!
+    p'@@@@@@@@@@@@@@@@@@@@'
+    p @unique
+     p'@@@@@@@@@@@@@@@@@@@@'
     redirect_to '/travellers/searchresults'
   end
 
@@ -58,11 +61,13 @@ class TravellersController < ApplicationController
     end
 
     ids = @experiences.distinct(:guide_id).pluck(:guide_id).map{|y| y}
-    @unique = Guide.where('id IN (?)',ids)
 
-    # @rating = Guide.joins(:reviews).where('guide_id IN (?)',ids)
-    # p '@@@@@@@@@@@@@@'
-    # p @rating
+    @unique = Guide.where('id IN (?)',ids).sort_by{|guide| @reviews.where(guide_id: guide).average("rating")|| 0}.reverse!
+    p'@@@@@@@@@@@@@@@@@@@@'
+    p @unique
+     p'@@@@@@@@@@@@@@@@@@@@'
+
+
 
   end
 
