@@ -38,10 +38,7 @@ class TravellersController < ApplicationController
 
     ids = @experiences.distinct(:guide_id).pluck(:guide_id).map{|y| y}
     @unique = Guide.where('id IN (?)',ids).sort_by{|guide| @reviews.where(guide_id: guide).average("rating")|| 0}.reverse!
-    p'@@@@@@@@@@@@@@@@@@@@'
-    p @unique
-     p'@@@@@@@@@@@@@@@@@@@@'
-    redirect_to '/travellers/searchresults'
+     redirect_to '/travellers/searchresults'
   end
 
   def persistentresults
@@ -63,11 +60,6 @@ class TravellersController < ApplicationController
     ids = @experiences.distinct(:guide_id).pluck(:guide_id).map{|y| y}
 
     @unique = Guide.where('id IN (?)',ids).sort_by{|guide| @reviews.where(guide_id: guide).average("rating")|| 0}.reverse!
-    p'@@@@@@@@@@@@@@@@@@@@'
-    p @unique
-     p'@@@@@@@@@@@@@@@@@@@@'
-
-
 
   end
 
