@@ -6,24 +6,24 @@
 		<p class = "display-3" style="color: rgba(255,255,255,.7); text-align:center">Where are you going, <%= @name %>?</p>
 	</div>
 
-	<div class="col-md-12 col-6-sm">
-		<div>
-			<%= form_with scope: :travellers, url: '/travellers/searchresults', local:true do %>
-			 	<div class="container col-10" style = "background-color: white; border-radius: 5px">
-			 		<div class = "row">
-			 			<div class = "col-1">
-			 			</div>
-					  <div class="col-md-10 col-sm-4">
-					   <%= text_field_tag :search, params[:search], placeholder: 'location', :required=> true, :class=>'form-control', :id=> 'search_term', style: 'border:none; text-align:center' %>
-					  </div>
-				  	<div class="col-1">
-				  	<%= button_tag type: 'submit', :name=>nil, class: "btn" do %>
-				  		<i class="fas fa-search text-center"></i>
-				  	<%end%>
-				  	</div>
+	<div>
+		<div class="">
+		<%= form_with scope: :travellers, url: '/travellers/searchresults', local:true do %>
+		 	<div class="container col-md-12 col-sm-10" style = "background-color: white; border-radius: 5px">
+		 		<div class = "row">
+		 			<div class = "col-1">
+		 			</div>
+				  <div class="col-10">
+				   <%= text_field_tag :search, params[:search], placeholder: 'location', :required=> true, :class=>'form-control', :id=> 'search_term', style: 'border:none; text-align:center' %>
+				  </div>
+			  	<div class="col-1 pl-0">
+			  	<%= button_tag type: 'submit', :name=>nil, class: "btn" do %>
+			  		<i class="fas fa-search text-center"></i>
+			  	<%end%>
 			  	</div>
-			  </div>
-		</div>
+		  	</div>
+		  </div>
+	</div>
 
 			<div class="mt-2 text-white container">
 					<div class = "row" style = "justify-content: center; font:white" >
