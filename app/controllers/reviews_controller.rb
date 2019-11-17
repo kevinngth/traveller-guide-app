@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
     user_guide = params[:guide_id] #this is the user id of a guide
     @guide = Guide.find_by(user_id: params[:guide_id]).id #this is the guide id
 
-    @name = User.find(@guide)
+    @name = User.find(user_guide)
     end
 
     def create
