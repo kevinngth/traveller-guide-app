@@ -1,11 +1,6 @@
 
 
-<% if current_user.id == User.find(@conversation.sender_id)  %>
-  Chatting With <%= User.find(@conversation.recipient_id).name%> 
- 
-<% else %>
-  Chatting With <%= User.find(@conversation.sender_id).name%> 
-<% end %>
+
 
 
 
