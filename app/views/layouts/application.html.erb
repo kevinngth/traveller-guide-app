@@ -14,7 +14,9 @@
   <body>
   	<nav class="navbar navbar-expand-sm navbar-light bg-none d-flex">
 <%# if the user is not logged in, navbar will only have brand%>
+ 
 		  <% if user_signed_in? %>
+ 
 <%# brand %>
 				<div class="navbar-brand m-0 p-0 nav-link">
 			    <img src="http://logok.org/wp-content/uploads/2014/06/National-Geographic-logo-yellow-frame-880x660.png" width="40" height="40" class="d-inline-block align-top">
@@ -48,7 +50,7 @@
 						<% end %>
 			    </ul>
 			  </div>
-			<% end %>
+
 		</nav>
 
 		<div class="mb-5">
