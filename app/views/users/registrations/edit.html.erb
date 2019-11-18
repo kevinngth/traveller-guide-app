@@ -30,6 +30,13 @@
 		  	</div>
 		  </div>
 
+		    <div class="form-group row">
+			    <%= f.label :location, :class => 'text-left col-3 col-form-label' %><br />
+			    <div class="col-9">
+			    	<%= f.text_field :location, autofocus: true, autocomplete: "email", :class => "form-control-plaintext bg-light border rounded-pill pl-5", :id=>"edit_location" %>
+			  	</div>
+			  </div>
+
 			<% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
   			<div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
 			<% end %>
@@ -68,3 +75,25 @@
 
 	</div>
 </div>
+
+<script type = "text/javascript">
+		searchBar = document.getElementById('edit_location')
+		var responseHandler = function() {
+		new google.maps.places.Autocomplete(searchBar, {types: ['(cities)']})
+		};
+
+		// make a new request
+		var request = new XMLHttpRequest();
+
+		// listen for the request response
+		request.addEventListener("load", responseHandler);
+
+		var url = "";
+		request.open("GET", url);
+
+		// send the request
+		request.send();
+
+	</script>
+
+<script src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDvj3ORRNNhdf-Yv8R8AHZjqX_jHcnrxqo&&libraries=places'></script>
