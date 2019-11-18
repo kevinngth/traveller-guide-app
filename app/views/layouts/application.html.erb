@@ -14,7 +14,7 @@
   <body>
   	<nav class="navbar navbar-expand-sm navbar-light bg-none d-flex">
 <%# if the user is not logged in, navbar will only have brand%>
-		  <% if user_signed_in? %>
+		  <% if user_signed_in? && !current_page?(:controller => 'travellers', :action => 'landing') %>
 <%# brand %>
 				<div class="navbar-brand m-0 p-0 nav-link">
 			    <img src="http://logok.org/wp-content/uploads/2014/06/National-Geographic-logo-yellow-frame-880x660.png" width="40" height="40" class="d-inline-block align-top">
@@ -30,7 +30,7 @@
 			  <div class="collapse navbar-collapse" id="navbarNav">
 			    <ul class="navbar-nav">
 			    	<li>
-							<%= link_to("Home", '/', {:class => "text-secondary nav-link"})%>
+							<%= link_to("Home", '/travellers/dashboard', {:class => "text-secondary nav-link"})%>
 						</li>
 						<li>
 							<%= link_to("Search", '/travellers/findguide', {:class => "nav-link text-secondary"})%>
