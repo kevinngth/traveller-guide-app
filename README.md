@@ -56,6 +56,13 @@
 
 # Wireframes
 ![ALT text](public/ideation/Wireframes/guide_index_and_guide_show.png)
+![ALT text](public/ideation/Wireframes/experience_form_guide_dashboard.png)
+![ALT text](public/ideation/Wireframes/landing.png)
+![ALT text](public/ideation/Wireframes/user_dashboard_and_search.png)
+
+
+# ERD
+![ALT text](public/ideation/ERD_draft_3.png)
 
 
 
