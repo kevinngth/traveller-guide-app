@@ -4,7 +4,7 @@
 
 
 
-<div id="msg" class="container pb-5  " style="overflow:scroll; background-color: #DBD5CE; height: 70vh">
+<div id="msg" class="container pb-5  rounded " style="overflow:scroll; background-color: #DBD5CE; height: 70vh">
 
  <% @messages.each do |message| %>
   <% if message.body %>
@@ -14,11 +14,11 @@
 
    
 <div class="text-right p-1 rounded  mt-4" > 
-<span style="background-color: #E1F6CB;" class="p-3 rounded mt-2">
+<span style="background-color: #E1F6CB; line-height: 230%;" class="p-3 rounded mt-2 text-left">
   <% else %>
 
 <div class=" text-left p-1 rounded  mt-4"  >
-<span style="background-color: #FFFFFF" class="p-3 rounded mt-2">
+<span style="background-color: #FFFFFF; line-height: 230%; text-align: left" class="p-3 rounded mt-2 text-left">
   <% end %>
 <strong>  <%= user.name %> </strong>: <%= message.body %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <small class="text-muted " ><%= message.created_at.strftime("%l:%M%p") %> </small> 
 </span>
@@ -29,7 +29,7 @@
 
 </div>
 
-<div class="col mt-2">
+<div class="container mt-2">
 <%= form_for [@conversation, @message], remote: true do |f| %>
 <div class="form-group">
   <%= f.text_area :body, class: "form-control", id: "message_content", placeholder:"Say Something ..." %>
