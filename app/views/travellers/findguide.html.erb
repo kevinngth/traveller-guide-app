@@ -8,7 +8,7 @@
 
 	<div>
 		<div class="">
-		<%= form_with scope: :travellers, url: '/travellers/searchresults', local:true do %>
+		<%= form_with scope: :travellers, url: '/travellers/create', local:true do %>
 		 	<div class="container col-md-12 col-sm-10 rounded" style = "background-color: white; border-radius: 5px">
 		 		<div class = "row">
 		 			<div class = "col-1">
@@ -19,7 +19,7 @@
 			  	<div class="col-1 pl-0">
 			  	<%= button_tag type: 'submit', :name=>nil, class: "btn" do %>
 			  		<i class="fas fa-search text-center"></i>
-			  	<%end%>
+			  	<% end %>
 			  	</div>
 		  	</div>
 		  </div>

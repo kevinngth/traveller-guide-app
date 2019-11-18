@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get '/profilepicture' => 'travellers#profilepic'
   post '/profilepicture' => 'travellers#createpic'
   get 'travellers/findguide' => 'travellers#findguide'
-  post 'travellers/searchresults' => 'travellers#createsearch'
+  post 'travellers/create' => 'travellers#createsearch'
   get 'travellers/searchresults'=> 'travellers#persistentresults'
   get '/travellers/becomeaguide' =>  'travellers#becomeaguide', as: 'user'
   post '/travellers/becomeaguide' => 'travellers#makeguide'
