@@ -21,16 +21,22 @@
 	<div class="tab-content mb-5" id="myTabContent">
 <%# conversations tab %>
 	  <div class="mt-3 tab-pane fade show active" id="conversations" role="tabpanel">
-	  	<% @conversations.each do |conversation| %>
-  			<% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
-  				<% if conversation.sender_id == current_user.id %>
-  					<% recipient = User.find(conversation.recipient_id) %>
-  				<% else %>
-  					<% recipient = User.find(conversation.sender_id) %>
-  				<% end %>
+  		<% if @conversations.where(recipient_id: @guide.user).empty? %>
+	  		<div class="text-center">
+	  			<h4>No messages yet</h4>
+	  		</div>
+	  	<% else %>
+		  	<% @conversations.each do |conversation| %>
+	  			<% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+	  				<% if conversation.sender_id == current_user.id %>
+	  					<% recipient = User.find(conversation.recipient_id) %>
+	  				<% else %>
+	  					<% recipient = User.find(conversation.sender_id) %>
+	  				<% end %>
+	  	<%end%>
   				<div class="alert alert-secondary d-flex justify-content-between" role="alert">
   					<%= link_to recipient.name, conversation_messages_path(conversation), :class => "text-dark mt-1"%>
-           			 <% if recipient.is_guide === true %>
+           			 <% if recipient.is_guide == true %>
 						<a class="btn btn-outline-secondary btn-sm" href="/guides/<%=recipient.id%>/reviews/new">Leave a review</a>
 						<% end %>
   				</div>
@@ -38,8 +44,8 @@
   		<% end %>
 	  </div>
 <%# reviews tab %>
-	  <div class="tab-pane fade text-center" id="reviews" role="tabpanel">
-	  	<h1 class="display-4">No reviews yet</h1>
+	  <div class="tab-pane fade show mt-4" id="reviews" role="tabpanel">
+	  	<h4 class="text-center">No reviews yet</h4>
 	  </div>
 	</div>
 </div>
@@ -58,13 +64,19 @@
 			<% end %>
 
 				<div class="card-body">
+					<% if @conversations.where(recipient_id: @guide.user).empty? %>
+				  		<div class="text-center">
+				  			<h4>No messages yet</h4>
+				  		</div>
+			  	<% else %>
 					<% @conversations.each do |conversation| %>
-						<% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
-							<% if conversation.sender_id == current_user.id %>
-								<% recipient = User.find(conversation.recipient_id) %>
-							<% else %>
-								<% recipient = User.find(conversation.sender_id) %>
-							<% end %>
+							<% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+								<% if conversation.sender_id == current_user.id %>
+									<% recipient = User.find(conversation.recipient_id) %>
+								<% else %>
+									<% recipient = User.find(conversation.sender_id) %>
+								<% end %>
+					<%end%>
 							<span class="card-title d-flex justify-content-between">
 								<%= link_to recipient.name, conversation_messages_path(conversation), :class => "text-dark lead convo"%>
 								<% if recipient.is_guide === true %>
@@ -82,7 +94,7 @@
 		<div class="col-6 pr-0">
 			<div class="card">
 	  		<h5 class="card-header">Reviews</h5>
-				<div class="card-body">
+				<div class="card-body text-center">
 					<h4>No reviews yet</h4>
 				</div>
 			</div>
