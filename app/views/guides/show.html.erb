@@ -1,27 +1,53 @@
 <h1 class="text-center mt-3">Name:  <%= @guide.user.name %></h1>
+<div class="container">
+	<div class="row">
+	  <div class="col-9 pl-0">
+	    <% @guide.experiences.each do |experience|%>
+				<li class="list-group-item">
+					<div class="row no-gutters">
+				    <div class="col-md-4">
+				      <img src="<%= experience.img %>" class="card-img">
+				    </div>
+				    <div class="col-md-8">
+				      <div class="card-body">
+				      	<p>
+					        <h5 class="card-title">Experience: </h5>
+					        <h4><%= experience.title %></h4>
+					      </p>
+				        <p class="card-text">Description: </p>
+				        <p><%= experience.description %></p>
+				      </div>
+				    </div>
+  				</div>
+				</li>
+			<% end %>
+	  </div>
 
-Location: <%= @guide.user.location %>
+		<div class="col-3 border rounded pt-2">
+			<div class="d-block d-sm-none">
+				<% if @guide.user.avatar.attached? == false %>
+					<div style="border: .5rem solid white; margin-right: 1rem; width: 7rem; height: 7rem; border-radius: 50%; background-repeat: no-repeat; background-position: center center; background-size: cover; background-image: url('https://dcist.com/wp-content/uploads/sites/3/2019/04/Gem2-768x689.jpg')" class="ml-auto"></div>
+				<% else %>
+					<div style="border: .5rem solid white; margin-right: 1rem; width: 100px; height: 100px; border-radius: 50%; background-repeat: no-repeat; background-position: center center; background-size: cover; background-image: url('<%= url_for(@guide.user.avatar) %>')" class="ml-auto"></div>
+				<% end %>
+			</div>
+			<div class="d-none d-sm-block">
+				<% if @guide.user.avatar.attached? == false %>
+					<div style="border: .5rem solid white; margin-right: 1rem; width: 15rem; height: 15rem; border-radius: 50%; background-repeat: no-repeat; background-position: center center; background-size: cover; background-image: url('https://dcist.com/wp-content/uploads/sites/3/2019/04/Gem2-768x689.jpg')" class="ml-auto"></div>
+				<% else %>
+					<div style="border: .5rem solid white; margin-right: 1rem; width: 100px; height: 100px; border-radius: 50%; background-repeat: no-repeat; background-position: center center; background-size: cover; background-image: url('<%= url_for(@guide.user.avatar) %>')" class="ml-auto"></div>
+				<% end %>
+			</div>
+	    <h3>Bio</h3>
+	    <p>
+	    	<%= @guide.bio %>
+	  	</p>
+	    <h3>Location</h3>
+	    <p>
+	    	<%= @guide.user.location %>
+	    </p>
+			<%= link_to 'Chat', conversations_path(sender_id: current_user.id, recipient_id: @guide.user.id), method: "post", class:"text-white btn btn-success btn-block my-3"%>
+		</div>
 
-<div class="row">
-    <div class="col-9">
-        <% @guide.experiences.each do |experience|%>
-<li class="list-group-item">  Experience: <p><%= experience.title %></p> 
-Description: <p> <%= experience.description %> </p>
-</li>
-<% end %>
-    </div>
-
-
-<div class="col-3 border">
-    <h3>Bio</h3>
-    <p>
-    <%= @guide.bio %>
-    </p>
-
+	</div>
 </div>
-</div>
-
-<%= link_to 'Chat',
-       conversations_path(sender_id: current_user.id, recipient_id: @guide.user.id), method: "post", class:"text-white btn btn-success btn-block mt-3"%>
-
-
