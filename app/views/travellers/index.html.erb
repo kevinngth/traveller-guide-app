@@ -29,7 +29,7 @@
   					<% recipient = User.find(conversation.sender_id) %>
   				<% end %>
   				<div class="alert alert-secondary d-flex justify-content-between" role="alert">
-  					<%= link_to recipient.name, conversation_messages_path(conversation), :class => "text-dark"%>
+  					<%= link_to recipient.name, conversation_messages_path(conversation), :class => "text-dark mt-1"%>
            			 <% if recipient.is_guide === true %>
 						<a class="btn btn-outline-secondary btn-sm" href="/guides/<%=recipient.id%>/reviews/new">Leave a review</a>
 						<% end %>
@@ -66,7 +66,7 @@
 								<% recipient = User.find(conversation.sender_id) %>
 							<% end %>
 							<span class="card-title d-flex justify-content-between">
-								<%= link_to recipient.name, conversation_messages_path(conversation), :class => "text-dark lead mt-2 convo"%>
+								<%= link_to recipient.name, conversation_messages_path(conversation), :class => "text-dark lead convo"%>
 								<% if recipient.is_guide === true %>
 								<a class="btn btn-outline-secondary btn-sm" href="/guides/<%=recipient.id%>/reviews/new">Leave a review</a>
 
