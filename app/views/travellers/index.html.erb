@@ -65,7 +65,10 @@
 							<% end %>
 							<span class="card-title d-flex justify-content-between">
 								<%= link_to recipient.name, conversation_messages_path(conversation), :class => "text-dark lead mt-2 convo"%>
+								<% if recipient.is_guide === true %>
 								<a class="btn btn-outline-secondary btn-sm" href="/guides/<%=recipient.id%>/reviews/new">Leave a review</a>
+
+								<% end %>
 							</span>
 							<hr>
 						<% end %>
