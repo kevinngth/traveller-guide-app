@@ -4,7 +4,7 @@ class TravellersController < ApplicationController
   def landing
     if user_signed_in?
     redirect_to '/travellers/dashboard'
-    
+
   end
   end
   def index
@@ -24,7 +24,7 @@ class TravellersController < ApplicationController
 
   def createsearch
     @categories = Category.all
-    @parameter = params[:search].split.map(&:capitalize).join(' ')
+    @parameter = params[:search]
     @guides = Guide.joins(:user).where('location LIKE :search', search: @parameter)
       @reviews = Review.all
 
@@ -53,7 +53,7 @@ class TravellersController < ApplicationController
      @categories = Category.all
      @reviews = Review.all
      @user = current_user
-    @parameter = session[:search].split.map(&:capitalize).join(' ')
+    @parameter = session[:search]
      @guides = Guide.joins(:user).where('location LIKE :search', search: @parameter)
     @guides_ids = @guides.map{|x|x.id}
 
