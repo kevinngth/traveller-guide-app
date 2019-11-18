@@ -4,7 +4,7 @@ class TravellersController < ApplicationController
 
   def index
     @user = current_user
-    @guide = @user.guide
+    # @guide = @user.guide
     @users = User.all
     # @conversations = Conversation.all.sort_by {|obj| obj.created_at}
     @conversations = Conversation.all
