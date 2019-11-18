@@ -14,11 +14,11 @@
 
    
 <div class="text-right p-1 rounded  mt-4" > 
-<span style="background-color: #E1F6CB;" class="p-3 rounded mt-2">
+<span style="background-color: #E1F6CB; line-height: 230%;" class="p-3 rounded mt-2 text-left">
   <% else %>
 
 <div class=" text-left p-1 rounded  mt-4"  >
-<span style="background-color: #FFFFFF" class="p-3 rounded mt-2">
+<span style="background-color: #FFFFFF; line-height: 230%; text-align: left" class="p-3 rounded mt-2 text-left">
   <% end %>
 <strong>  <%= user.name %> </strong>: <%= message.body %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <small class="text-muted " ><%= message.created_at.strftime("%l:%M%p") %> </small> 
 </span>
