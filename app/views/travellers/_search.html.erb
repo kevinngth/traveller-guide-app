@@ -1,4 +1,4 @@
-<%= form_with scope: :travellers, url: '/travellers/searchresults', local:true do %>
+<%= form_with scope: :travellers, url: '/travellers/create', local:true do%>
 	  <p>
 	   <%= text_field_tag :search, params[:search], placeholder: 'location', :required=> true, :class=>'form-control', :id=>'search_term'%>
 	  </p>
@@ -10,7 +10,7 @@
     Categories
   </button>
   <div class="dropdown-menu p-3" aria-labelledby="dropdownMenuButton">
-     <%@categories.each do |category|%>
+     <% @categories.each do |category| %>
    		     <li>
                 <div class="checkbox">
                     <label>
@@ -19,7 +19,7 @@
                     </label>
                 </div>
             </li>
-     <%end%>
+     <% end %>
   </div>
 </div>
 
