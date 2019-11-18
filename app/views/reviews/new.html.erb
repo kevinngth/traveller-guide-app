@@ -1,43 +1,72 @@
-<h1>Leave A Review for <%= @name.name %></h1>
+<div class="d-none d-sm-block">
+	<div style="width:60vw;margin-left: auto;">
+		<img class="img-fluid" src="https://images.unsplash.com/photo-1573766848402-796d7a4800d4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1630&q=80">
+	</div>
 
+	<div class="offset-3 col-6 text-center bg-white rounded shadow py-4" style="margin-top: -100px">
+		<h4>Leave A Review for <%= @name.name %></h4>
 
-<%= form_with scope: :review, url: guide_reviews_path , local: true do |f| %>
+		<%= form_with scope: :review, url: guide_reviews_path , local: true do |f| %>
 
-  <p>
-    <%= f.label :Review %><br>
-    <%= f.text_area :body, :class=>'form-control', :placeholder=>'Write Something Nice for your Guide ...', :required => 'true' %>
-  </p>
+			<p>
+			  <%= f.label :Review %><br>
+			  <%= f.text_area :body, :class=>'form-control', :placeholder=>'Write something nice for your guide ...', :required => 'true' %>
+			</p>
 
-<div id="rating-form">
-<label>Rating</label>
+			<div id="rating-form">
+				<label>Rating</label>
+			</div>
+			<%= f.hidden_field :user_id, :value => @user.id.to_i %>
+			<%= f.hidden_field :guide_id, :value => @guide %>
+			<p>
+				<%= f.submit 'Submit Review', :class=>'btn btn-success' %>
+			</p>
+
+			<script>
+			  $("#rating-form").raty({
+			    path: '/assets/',
+			   scoreName: 'review[rating]',
+			   size     : 24
+			  });
+			</script>
+		<% end %>
+	</div>
+
+	<div style="width:60vw;margin-top: -200px;">
+		<img class="img-fluid" src="https://images.unsplash.com/photo-1500828921686-fb56856d8580?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80">
+	</div>
 </div>
 
+<div class="d-block d-sm-none">
+	<div>
+		<img src="https://images.unsplash.com/photo-1563434100436-9daa2abcbe20?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" class="img-fluid">
+	</div>
+	<div class="offset-3 col-6 text-center bg-white rounded shadow py-4" style="margin-top: -30vh">
+		<h4>Leave A Review for <%= @name.name %></h4>
 
+		<%= form_with scope: :review, url: guide_reviews_path , local: true do |f| %>
 
+			<p>
+			  <%= f.label :Review %><br>
+			  <%= f.text_area :body, :class=>'form-control', :placeholder=>'Write something nice for your guide ...', :required => 'true' %>
+			</p>
 
-  <%= f.hidden_field :user_id, :value => @user.id.to_i %>
-  <%= f.hidden_field :guide_id, :value => @guide %>
+			<div id="rating-form">
+				<label>Rating</label>
+			</div>
+			<%= f.hidden_field :user_id, :value => @user.id.to_i %>
+			<%= f.hidden_field :guide_id, :value => @guide %>
+			<p>
+				<%= f.submit 'Submit Review', :class=>'btn btn-success' %>
+			</p>
 
-
-<p>
-    <%= f.submit 'Submit Review', :class=>'btn btn-primary' %>
-  </p>
-
-
-
-<script>
-
-
-
-        $("#rating-form").raty({
-          path: '/assets/',
-         scoreName: 'review[rating]',
-          
-         size     : 24
-        });
-   
-
-</script>
-
-
-<% end %>
+			<script>
+			  $("#rating-form").raty({
+			    path: '/assets/',
+			   scoreName: 'review[rating]',
+			   size     : 24
+			  });
+			</script>
+		<% end %>
+	</div>
+</div>
