@@ -62,7 +62,7 @@
 
 
 # ERD
-![ALT text](public/ideation/ERD_draft_3.png)
+![ALT text](public/ideation/ERD draft 3.png)
 
 
 
