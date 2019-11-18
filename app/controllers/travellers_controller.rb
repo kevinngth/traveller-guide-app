@@ -17,7 +17,7 @@ class TravellersController < ApplicationController
 
   def createsearch
     @categories = Category.all
-    @parameter = params[:search].capitalize
+    @parameter = params[:search].split.map(&:capitalize).join(' ')
     @guides = Guide.joins(:user).where('location LIKE :search', search: @parameter)
       @reviews = Review.all
 
@@ -46,7 +46,7 @@ class TravellersController < ApplicationController
      @categories = Category.all
      @reviews = Review.all
      @user = current_user
-    @parameter = session[:search].capitalize
+    @parameter = session[:search].split.map(&:capitalize).join(' ')
      @guides = Guide.joins(:user).where('location LIKE :search', search: @parameter)
     @guides_ids = @guides.map{|x|x.id}
 
