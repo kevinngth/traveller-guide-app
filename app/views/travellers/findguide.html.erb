@@ -3,18 +3,18 @@
 
 <div class = "container">
 <div class="col-12">
-		<p class = "display-3" style="color: rgba(255,255,255,.7); text-align:center">Where are you going, <%= @name %>?</p>
+		<p class = "display-3" style="color: rgba(240,240,240,.9); text-align:center">Where are you going, <%= @name %>?</p>
 	</div>
 
 	<div>
 		<div class="">
 		<%= form_with scope: :travellers, url: '/travellers/searchresults', local:true do %>
-		 	<div class="container col-md-12 col-sm-10" style = "background-color: white; border-radius: 5px">
+		 	<div class="container col-md-12 col-sm-10 rounded" style = "background-color: white; border-radius: 5px">
 		 		<div class = "row">
 		 			<div class = "col-1">
 		 			</div>
 				  <div class="col-10">
-				   <%= text_field_tag :search, params[:search], placeholder: 'location', :required=> true, :class=>'form-control', :id=> 'search_term', style: 'border:none; text-align:center' %>
+				   <%= text_field_tag :search, params[:search], placeholder: 'location', :required=> true, :class=>'form-control', :id=> 'search_term', style: 'border:none; text-align:center;' %>
 				  </div>
 			  	<div class="col-1 pl-0">
 			  	<%= button_tag type: 'submit', :name=>nil, class: "btn" do %>
@@ -75,7 +75,12 @@
 	</div>
 <script type="text/javascript">
 	console.log('yay!')
-	document.body.style.background = "url(https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80) no-repeat center center fixed"
+	var backgroundArray = ["https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80", "https://images.unsplash.com/photo-1550596334-7bb40a71b6bc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80","https://images.unsplash.com/photo-1548407260-da850faa41e3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1187&q=80", "https://images.unsplash.com/photo-1546872823-4b0686c1908c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80","https://images.unsplash.com/photo-1546656203-d247cb1f3d0a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80","https://images.unsplash.com/photo-1546411889-423f01e24850?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=940&q=80"]
+
+	var randomNumber = Math.floor(Math.random() * backgroundArray.length);
+	var background = backgroundArray[randomNumber];
+
+	document.body.style.background = "linear-gradient(to bottom, rgba(255,255,255,0.1) 0%,rgba(200,200,200,0.1) 100%),url("+ background +") no-repeat center center fixed"
 	document.body.style["background-size"] = "cover"
 	console.log('wow')
 </script>
