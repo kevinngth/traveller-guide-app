@@ -4,7 +4,7 @@
 
 
 
-<div id="msg" class="container pb-5  " style="overflow:scroll; background-color: #DBD5CE; height: 70vh">
+<div id="msg" class="container pb-5  rounded " style="overflow:scroll; background-color: #DBD5CE; height: 70vh">
 
  <% @messages.each do |message| %>
   <% if message.body %>
@@ -29,7 +29,7 @@
 
 </div>
 
-<div class="col mt-2">
+<div class="container mt-2">
 <%= form_for [@conversation, @message], remote: true do |f| %>
 <div class="form-group">
   <%= f.text_area :body, class: "form-control", id: "message_content", placeholder:"Say Something ..." %>
