@@ -1,7 +1,8 @@
 class TravellersController < ApplicationController
 
-  before_action :authenticate_user!
-
+  before_action :authenticate_user!, except:[:landing]
+  def landing
+  end
   def index
     @user = current_user
     @users = User.all

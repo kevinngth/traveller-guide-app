@@ -81,6 +81,17 @@ ActiveRecord::Schema.define(version: 2019_11_16_033705) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "recipient_id"
+    t.string "action"
+    t.string "notifiable_type"
+    t.integer "notifiable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "guide_id"
@@ -115,4 +126,5 @@ ActiveRecord::Schema.define(version: 2019_11_16_033705) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "experiences", "categories"
+  add_foreign_key "notifications", "users"
 end
