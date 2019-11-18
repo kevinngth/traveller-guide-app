@@ -11,11 +11,11 @@
 <% else %>
 	<a href="/travellers/becomeaguide" class="btn btn-outline-secondary btn-sm mb-5 ml-3">Become a guide and showcase your city!</a>
 <% end %>
-
 	<div class="col-4 offset-4">
 		<a class = "btn btn-block btn-success mb-5" href="/travellers/findguide">Going on an adventure!</a>
 	</div>
 </div>
+
 <%# visible only on xs %>
 
 <div class="d-block d-sm-none">
@@ -39,7 +39,7 @@
   				<% end %>
   				<div class="alert alert-secondary d-flex justify-content-between" role="alert">
   					<%= link_to recipient.name, conversation_messages_path(conversation), :class => "text-dark"%>
-            <a href="/guides/<%=recipient.id%>/reviews/new">Leave A Review</a>
+            <a href="/guides/<%=recipient.id%>/reviews/new"><i class="fas fa-thumbs-up"></i>Leave A Review</a>
   				</div>
   			<% end %>
   		<% end %>
@@ -73,7 +73,7 @@
 								<% recipient = User.find(conversation.sender_id) %>
 							<% end %>
 							<span class="card-title d-flex justify-content-between">
-								<%= link_to recipient.name, conversation_messages_path(conversation), :class => "text-dark lead mt-2 convo"%>
+								<%= link_to recipient.name, conversation_messages_path(conversation), :class => "text-dark lead mt-2 convo"%> 
 								<a class="btn btn-outline-secondary btn-sm" href="/guides/<%=recipient.id%>/reviews/new">Leave a review</a>
 							</span>
 							<hr>
