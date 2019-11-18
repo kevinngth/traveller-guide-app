@@ -1,8 +1,11 @@
 class TravellersController < ApplicationController
 
-  before_action :authenticate_user!
+  before_action :authenticate_user! , except:[:landing]
   def landing
+    if user_signed_in?
     redirect_to '/travellers/dashboard'
+    
+  end
   end
   def index
     @user = current_user
