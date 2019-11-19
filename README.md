@@ -1,7 +1,7 @@
 # Nat Jio
 https://nat-jio.herokuapp.com/
 
-# Technologies used
+## Technologies used
 - Ruby
 - Javascript
 - HTML
@@ -17,7 +17,7 @@ https://nat-jio.herokuapp.com/
 - Google Places API
 - JQuery Raty
 
-# Approach
+## Approach
 - Ideation to generate travel app idea for solo travellers
 - Identified Probems for the user and the user story
 - Did Mockups and ERDs to determine how the site will look and how the data needs to be stored.
@@ -28,7 +28,7 @@ https://nat-jio.herokuapp.com/
 - Deply on Heroku and GitHub
 
 
-# Installation & Instructions
+## Installation & Instructions
 - Install Ruby & Rails (latest version)
 - Install PostgreSQL
 - Run Bundle Install
@@ -36,7 +36,7 @@ https://nat-jio.herokuapp.com/
 - Run Rails server 
 
 
-# User Experience
+## User Experience
 1. Problem Statement
 - When you travel by yourself and want to have a genuine local experience in a country, but you don't know anyone in the city that you are going to. 
 - You want to show off what your city has to offer and want to make friends with fellow wanderlust travellers. 
@@ -54,14 +54,14 @@ https://nat-jio.herokuapp.com/
 - Sign up as a guide, add experiences that you want to offer, wait for users to initiate chats for you to bring them around. 
 
 
-# Wireframes
+## Wireframes
 ![ALT text](public/ideation/Wireframes/guide_index_and_guide_show.png)
 ![ALT text](public/ideation/Wireframes/experience_form_guide_dashboard.png)
 ![ALT text](public/ideation/Wireframes/landing.png)
 ![ALT text](public/ideation/Wireframes/user_dashboard_and_search.png)
 
 
-# ERD
+## ERD
 
 ![ALT text](public/ideation/ERD_draft_3.png)
 
