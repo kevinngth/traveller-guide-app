@@ -18,9 +18,9 @@ use rails
 
 ##### For each, please include code examples that each team member wrote.
 
-Code snippet up to 20 lines.
-Code design documents or architecture drawings / diagrams.
+##### Code snippet up to 20 lines.
+##### Code design documents or architecture drawings / diagrams.
 ## WDI Unit 3 Post Mortem (individual)
 #### What habits did I use during this unit that helped me?
 #### What habits did I have during this unit that I can improve on?
-How is the overall level of the course during this unit? (instruction, course materials, etc.)
+#### How is the overall level of the course during this unit? (instruction, course materials, etc.)
