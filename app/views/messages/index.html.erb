@@ -7,7 +7,7 @@
 <div id="msg" class="container pb-5  rounded " style="overflow:scroll; background-color: #DBD5CE; height: 70vh">
 
  <% @messages.each do |message| %>
-  <% if message.body %>
+   <% if message.body %>
    <% user = User.find(message.user_id) %>
 
    <% if user.id == current_user.id %>
