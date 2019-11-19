@@ -90,7 +90,7 @@
 		  	<% @conversations.each do |conversation| %>
 	  			<% if conversation.recipient_id == current_user.id %>
 	  				<% sender = User.find(conversation.sender_id) %>
-	  				<div class="alert alert-secondary d-flex justify-content-between" role="alert">
+	  				<div class= " d-flex justify-content-between" role="">
 							<%= link_to sender.name, conversation_messages_path(conversation), :class => "text-dark"%>
 						</div>
 	  			<% end %>
@@ -145,7 +145,7 @@
 				  	<% @conversations.each do |conversation| %>
 			  			<% if conversation.recipient_id == current_user.id %>
 			  				<% sender = User.find(conversation.sender_id) %>
-			  				<div class="alert alert-secondary d-flex justify-content-between" role="alert">
+			  				<div class="d-flex justify-content-between" role="">
 									<%= link_to sender.name, conversation_messages_path(conversation), :class => "text-dark"%>
 								</div>
 			  			<% end %>
